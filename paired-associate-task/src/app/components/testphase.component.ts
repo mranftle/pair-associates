@@ -13,6 +13,7 @@ import Timer = NodeJS.Timer;
 @Component({
   selector: 'test-phase',
   templateUrl: '../templates/testphase.component.html',
+  styleUrls:['../stylesheets/testphase.component.css'],
   providers: [WordPairService]
 })
 

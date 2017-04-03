@@ -14,10 +14,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Dinosaur',
+            name='WordPair',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('species', models.TextField()),
+                ('word1', models.TextField()),
+                ('word2', models.TextField())
             ],
         ),
     ]

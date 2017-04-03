@@ -1,4 +1,4 @@
-<div *ngIf="!showCorrect">
+<div class="testword" *ngIf="!showCorrect">
   <div> {{selectedWordPair.word1 + '-?????'}}</div>
 
   <input type="text" #response>
@@ -7,7 +7,7 @@
 </div>
 
 
-<div *ngIf="showCorrect">
+<div class="testword" *ngIf="showCorrect">
   <div>{{selectedWordPair.word1 + '-' + selectedWordPair.word2}}</div>
   <!--<button (click)="nextPair()"> next </button>-->
 </div>
