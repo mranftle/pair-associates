@@ -9,12 +9,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
  * Created by matthewRanftle1 on 3/1/17.
  */
 var core_1 = require('@angular/core');
-var wordpair_list_1 = require('./../wordpair-list');
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/catch');
+require('rxjs/add/operator/map');
 var WordPairService = (function () {
-    function WordPairService() {
+    function WordPairService(http) {
+        this.http = http;
+        this.wordPairUrl = 'http://localhost:8000/wordpairs';
     }
     WordPairService.prototype.getWordPairs = function () {
-        return Promise.resolve(wordpair_list_1.WORDPAIRS);
+        return this.http.get(this.wordPairUrl)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    WordPairService.prototype.handleError = function (error) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     };
     WordPairService = __decorate([
         core_1.Injectable()

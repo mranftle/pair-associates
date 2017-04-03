@@ -7,7 +7,8 @@ import { WordPairService } from '../services/wordpair.service';
 
 @Component({
   selector: 'study-phase',
-  template: `<div> {{selectedWordPair.word1 + '-' + selectedWordPair.word2}}</div>`,
+  templateUrl: '../templates/studyphase.component.html',
+  styleUrls: ['../stylesheets/studyphase.component.css'],
   providers: [WordPairService]
 })
 
