@@ -5,14 +5,14 @@
  *
  */
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { WordPair } from './wordpair';
-import { WordPairService } from './wordpair.service';
-import {UserResponse} from "./userresponse";
+import { WordPair } from '../entities/wordpair';
+import { WordPairService } from '../services/wordpair.service';
+import {UserResponse} from "../entities/userresponse";
 import Timer = NodeJS.Timer;
 
 @Component({
   selector: 'test-phase',
-  templateUrl: './testphase.component.html',
+  templateUrl: '../templates/testphase.component.html',
   providers: [WordPairService]
 })
 

@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { StudyPhaseComponent } from './studyphase.component';
+import { AppComponent } from './components/app.component';
+import { StudyPhaseComponent } from './components/studyphase.component';
 import {RouterModule, Routes} from "@angular/router";
-import {TestPhaseComponent} from "./testphase.component";
-import {TestComponent} from "./test.component"
+import {TestPhaseComponent} from "./components/testphase.component";
+import {TestComponent} from "./components/test.component"
 
 const appRoutes: Routes = [
   // { path: 'intro', component: IntroPhaseComponent },

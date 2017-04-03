@@ -5,8 +5,8 @@
  * Created by matthewRanftle1 on 3/3/17.
  */
 import { Component, OnInit} from '@angular/core';
-import { WordPair } from './wordpair';
-import { WordPairService } from './wordpair.service';
+import { WordPair } from '../entities/wordpair';
+import { WordPairService } from '../services/wordpair.service';
 
 @Component({
   selector: 'test',

@@ -9,7 +9,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
  * Created by matthewRanftle1 on 3/3/17.
  */
 var core_1 = require('@angular/core');
-var wordpair_service_1 = require('./wordpair.service');
+var wordpair_service_1 = require('./../wordpair.service.ts');
 var StudyPhaseComponent = (function () {
     function StudyPhaseComponent(wordPairService) {
         this.wordPairService = wordPairService;
