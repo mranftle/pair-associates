@@ -1,0 +1,13 @@
+<div *ngIf="!showCorrect">
+  <div> {{selectedWordPair.word1 + '-?????'}}</div>
+
+  <input type="text" #response>
+
+  <button (click)="submitPair()">submit</button>
+</div>
+
+
+<div *ngIf="showCorrect">
+  <div>{{selectedWordPair.word1 + '-' + selectedWordPair.word2}}</div>
+  <!--<button (click)="nextPair()"> next </button>-->
+</div>
