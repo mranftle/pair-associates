@@ -23,7 +23,7 @@ export class IntroComponent {
 
   startStudy(): void {
 
-      // this.router.navigate(['/study-phase']);
+    this.router.navigate(['/study-phase']);
     console.log(localStorage);
   }
 
