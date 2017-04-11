@@ -14,7 +14,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'app-root',
             templateUrl: './app.component.html',
-            styleUrls: ['../stylesheets/app.component.css'],
+            styleUrls: ['stylesheets/app.component.css'],
         })
     ], AppComponent);
     return AppComponent;

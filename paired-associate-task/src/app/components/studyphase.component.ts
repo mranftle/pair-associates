@@ -4,6 +4,7 @@
 import { Component, OnInit} from '@angular/core';
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'study-phase',
@@ -17,7 +18,8 @@ export class StudyPhaseComponent {
   wordPairs: WordPair[];
   selectedWordPair: WordPair;
   i: number;
-  constructor( private wordPairService: WordPairService) {}
+  constructor( private wordPairService: WordPairService,
+               private router: Router) {}
 
   getWordPairs(): void {
     this.wordPairService.getWordPairs().then(
@@ -41,6 +43,7 @@ export class StudyPhaseComponent {
         this.i = 0;
         // this.cycleWords();
         //route to next path
+        this.router.navigate(['/intro'])
       }
     }, 1000); // responseTime between words presented in study phase
   }
