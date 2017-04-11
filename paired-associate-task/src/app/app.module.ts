@@ -7,20 +7,20 @@ import { AppComponent } from './components/app.component';
 import { StudyPhaseComponent } from './components/studyphase.component';
 import {RouterModule, Routes} from "@angular/router";
 import {TestPhaseComponent} from "./components/testphase.component";
-import {TestComponent} from "./components/test.component"
+import {UserComponent} from "./components/user.component"
 
 const appRoutes: Routes = [
   // { path: 'intro', component: IntroPhaseComponent },
   { path: 'study-phase', component: StudyPhaseComponent },
   { path: 'test-phase', component: TestPhaseComponent },
-  { path: 'test', component: TestComponent}
+  { path: 'login', component: UserComponent}
 ]
 @NgModule({
   declarations: [
     AppComponent,
     StudyPhaseComponent,
     TestPhaseComponent,
-    TestComponent
+    UserComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
