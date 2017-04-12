@@ -1,7 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser
 
 class WordPair(models.Model):
     word1 = models.TextField()
@@ -9,7 +7,7 @@ class WordPair(models.Model):
 
 class UserResponse(models.Model):
     id= models.IntegerField(auto_created=True, primary_key=True)
-    user_name= models.TextField()
+    username= models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     word1 = models.TextField()
     word2 = models.TextField()
@@ -20,16 +18,6 @@ class UserResponse(models.Model):
     class Meta:
         ordering = ('created',)
 
-
-class Participant(models.Model):
-    user = models.OneToOneField(User)
+class User(AbstractUser):
     is_test = models.BooleanField(blank=False, default=False)
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Participant.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.participant.save()

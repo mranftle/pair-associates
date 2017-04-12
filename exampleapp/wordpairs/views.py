@@ -1,7 +1,6 @@
-from rest_framework import viewsets, permissions, generics, status
-from rest_framework.decorators import detail_route, list_route
-from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, ParticipantSerializer
-from wordpairs.models import WordPair, UserResponse, Participant
+from rest_framework import viewsets, permissions, status
+from wordpairs.serializers import WordPairSerializer, UserResponseSerializer
+from wordpairs.models import WordPair, UserResponse, User
 from rest_framework.response import Response
 
 
@@ -30,12 +29,12 @@ class UserResponseViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-# determines whether test or training data should be presented
-class ParticipantViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = ParticipantSerializer
+class UserViewSet(viewsets.ModelViewSet):
 
-    def list(self,request):
-        print request.user.id
-        queryset=Participant.objects.filter(user_id=request.user.id)
-        return Response(queryset.values()[0]['is_test'], status=status.HTTP_200_OK)
+    # permission_classes = (permissions.IsAuthenticated,)
+
+    def list(self, response):
+        def list(self, request):
+            print request.user.id
+            queryset = Participant.objects.filter(user_id=request.user.id)
+            return Response(queryset.values()[0]['is_test'], status=status.HTTP_200_OK)

@@ -25,6 +25,7 @@ export class WordPairService {
       .catch(this.handleError);
   }
 
+  // return whether a user is testing or training
   getTestOrTrain() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
@@ -35,6 +36,17 @@ export class WordPairService {
       .then(response => response.json())
       .catch(this.handleError)
   }
+
+  // set whether a user is testing or training
+  setTestOrTrain(is_test: boolean) {
+    let body = JSON.stringify({is_test:is_test})
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
+    let options = new RequestOptions({ headers:headers});
+    console.log(body);
+    return this.http.post(this.wordPairUrl, body, options)
+  }
+
 
   //more detailed error message to come, move to error file
   private handleError(error: any) {

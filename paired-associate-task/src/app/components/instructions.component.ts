@@ -25,10 +25,8 @@ export class IntroComponent implements OnInit {
   }
 
   startStudy(): void {
+    this.router.navigate(['/study-phase'])
 
-    this.router.navigate(['/study-phase']);
-    console.log(this.isTest);
-    this.isTest = !this.isTest;
   }
 
   ngOnInit(): void {
