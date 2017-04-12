@@ -20,14 +20,12 @@ from wordpairs import views
 
 router = routers.DefaultRouter()
 router.register(r'wordpairs', views.WordPairViewSet, 'word-pair')
-router.register(r'userresponse', views.UserResponseViewSet, 'user-response')
+router.register(r'instructions', views.ParticipantViewSet, 'instructions')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^api-token-auth/', obtain_jwt_token),
-
+    url(r'^api-token-auth/', obtain_jwt_token)
 ]
-
 
