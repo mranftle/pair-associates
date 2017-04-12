@@ -6,12 +6,12 @@ import {LoginComponent} from "./components/login.component";
 import {TestPhaseComponent} from "./components/testphase.component";
 import {StudyPhaseComponent} from "./components/studyphase.component";
 import {AuthGuard} from "./gaurds/auth.gaurd";
-import {IntroComponent} from "./components/intro.component";
+import {IntroComponent} from "./components/instructions.component";
 
 
 const appRoutes: Routes = [
-  { path: 'intro', component: IntroComponent, canActivate:[AuthGuard]},
-  { path: 'study-phase', component: StudyPhaseComponent, canActivate:[AuthGuard] },
+  { path: 'intro', component: IntroComponent},//, canActivate:[AuthGuard]},
+  { path: 'study-phase', component: StudyPhaseComponent},//, canActivate:[AuthGuard] },
   { path: 'test-phase', component: TestPhaseComponent, canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent},
 

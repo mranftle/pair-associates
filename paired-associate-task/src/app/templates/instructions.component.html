@@ -1,0 +1,12 @@
+<p *ngIf="isTest">
+ Test Instructions
+</p>
+<p *ngIf="!isTest">
+  Training Instructions
+</p>
+<div *ngIf="isTest">
+  <button (click)="startStudy()">Test</button>
+</div>
+<div *ngIf="!isTest">
+  <button (click)="startStudy()">Study</button>
+</div>

@@ -31,5 +31,5 @@ class Participant(models.Model):
             Participant.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
-    def save_user_profile(selfsender, instance, **kwargs):
+    def save_user_profile(sender, instance, **kwargs):
         instance.participant.save()

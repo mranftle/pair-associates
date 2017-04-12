@@ -11,7 +11,8 @@ import {AlertComponent} from "./components/alert.component";
 import {AlertService} from "./services/alert.service";
 import { AuthGuard } from "./gaurds/auth.gaurd"
 import {routing} from "./app.routing";
-import {IntroComponent} from "./components/intro.component";
+import {IntroComponent} from "./components/instructions.component";
+import {WordPairService} from "./services/wordpair.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {IntroComponent} from "./components/intro.component";
   ],
   providers: [
     AlertService,
-    AuthGuard
+    AuthGuard,
+    WordPairService
   ],
   bootstrap: [AppComponent]
 })
