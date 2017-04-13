@@ -6,26 +6,24 @@
   transform: translate(-50%, -50%);
   font-size: 80px;
 }
-input[type="text"] {
-  display: block;
-  margin: 0;
+.fullscreenDiv {
+  background-color: #ffffff;
   width: 100%;
-  font-family: sans-serif;
-  font-size: 18px;
-  appearance: none;
-  box-shadow: none;
-  border-radius: none;
-}
-input[type="text"]:focus {
-  outline: none;
+  height: auto;
+  bottom: 0px;
+  top: 0px;
+  left: 0;
+  position: absolute;
 }
 
-.style-2 input[type="text"] {
-  padding: 10px;
-  border: solid 5px #000000;
-  transition: border 0.3s;
-}
-.style-2 input[type="text"]:focus,
-.style-2 input[type="text"].focus {
-  border: solid 5px #000000;
-}
+.textbox {
+   border: 1px solid #848484;
+   -webkit-border-radius: 30px;
+   -moz-border-radius: 30px;
+   border-radius: 30px;
+   outline:0;
+   height:25px;
+   width: 275px;
+   padding-left:10px;
+   padding-right:10px;
+ }

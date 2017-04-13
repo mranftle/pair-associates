@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
       .subscribe(
         data => {
           this.alertService.success('login success')
-          this.router.navigate(['/intro']);
+          this.router.navigate(['/instructions']);
         },
         error => {
           this.alertService.error(error)

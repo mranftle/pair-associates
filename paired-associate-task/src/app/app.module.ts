@@ -13,6 +13,7 @@ import { AuthGuard } from "./gaurds/auth.gaurd"
 import {routing} from "./app.routing";
 import {IntroComponent} from "./components/instructions.component";
 import {WordPairService} from "./services/wordpair.service";
+import {AutofocusDirective} from "./directives/autofocus.directive";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {WordPairService} from "./services/wordpair.service";
     StudyPhaseComponent,
     TestPhaseComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    AutofocusDirective
   ],
   imports: [
     routing,

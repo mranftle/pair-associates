@@ -7,8 +7,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
-import {UserResponse} from "../entities/userresponse";
 import Timer = NodeJS.Timer;
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'test-phase',
@@ -17,7 +17,7 @@ import Timer = NodeJS.Timer;
   providers: [WordPairService]
 })
 
-export class TestPhaseComponent {
+export class TestPhaseComponent implements OnInit {
   // instructions = "Instructions here";
   @ViewChild('response') response: any;
   wordPairs: WordPair[];
@@ -28,7 +28,8 @@ export class TestPhaseComponent {
   timer: Timer;
   responseNum: number;
 
-  constructor( private wordPairService: WordPairService) {}
+  constructor( private wordPairService: WordPairService,
+               private router: Router) {}
 
   getWordPairs(): void {
     this.wordPairService.getWordPairs().then(
@@ -63,7 +64,7 @@ export class TestPhaseComponent {
 
         //testing done, route to next component
         //store responses
-
+        // this.router.navigate(['/instructions'])
         this.responseNum = 0;
       }
       this.selectedWordPair = this.wordPairs[this.responseNum];
@@ -86,6 +87,6 @@ export class TestPhaseComponent {
       word1: null,
       word2: null
     };
-  }
 
+  }
 }
