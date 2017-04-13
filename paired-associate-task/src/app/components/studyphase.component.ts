@@ -44,7 +44,7 @@ export class StudyPhaseComponent {
         // this.cycleWords();
         // set testing = true
         // this.wordPairService.setTestOrTrain(true);
-        this.router.navigate(['/intro']);
+        this.router.navigate(['/instructions']);
 
       }
     }, 1000); // responseTime between words presented in study phase

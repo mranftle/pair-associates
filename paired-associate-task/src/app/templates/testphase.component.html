@@ -1,13 +1,12 @@
-<div class="testword" *ngIf="!showCorrect">
-  <div> {{selectedWordPair.word1 + '-?????'}}</div>
-  <br>
-  <input type="text" #response>
+<div class="fullscreenDiv">
 
-  <button (click)="submitPair()">submit</button>
-</div>
-
-
-<div class="testword" *ngIf="showCorrect">
-  <div>{{selectedWordPair.word1 + '-' + selectedWordPair.word2}}</div>
-  <!--<button (click)="nextPair()"> next </button>-->
+  <div class="testword" *ngIf="!showCorrect">
+    <div> {{selectedWordPair.word1 + '-?????'}}</div>
+    <input autofocus class="textbox"type="text" (keyup.enter)="submitPair()" #response>
+    <button (click)="submitPair()">submit</button>
+  </div>
+  <div class="testword" *ngIf="showCorrect">
+    <div>{{selectedWordPair.word1 + '-' + selectedWordPair.word2}}</div>
+    <!--<button (click)="nextPair()"> next </button>-->
+  </div>
 </div>
