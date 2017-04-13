@@ -1,5 +1,4 @@
-from wordpairs.models import WordPair, UserResponse
-from django.contrib.auth.models import User
+from wordpairs.models import WordPair, UserResponse, User
 from rest_framework import serializers
 
 class UserResponseSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,3 +15,8 @@ class WordPairSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = WordPair
         fields = ('word1', 'word2')
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'password', 'username', 'is_test')

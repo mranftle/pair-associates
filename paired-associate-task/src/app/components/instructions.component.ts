@@ -18,6 +18,7 @@ import {WordPairService} from "../services/wordpair.service";
 
 export class IntroComponent implements OnInit {
   isTest=false;
+  userId: number;
 
   constructor(private router: Router,
               private wordPairService: WordPairService,
@@ -25,14 +26,22 @@ export class IntroComponent implements OnInit {
   }
 
   startStudy(): void {
+    this.wordPairService.setTestOrTrain(this.userId,true);
     this.router.navigate(['/study-phase'])
 
   }
 
+  startTest(): void {
+    this.wordPairService.setTestOrTrain(this.userId,false);
+    this.router.navigate(['/test-phase']);
+  }
+
+  // get test status and user_id
   ngOnInit(): void {
     this.wordPairService.getTestOrTrain().then(
-      (isTest) => {
-        this.isTest = isTest;
+      (userInfo) => {
+        this.userId = userInfo['id'];
+        this.isTest = userInfo['is_test'];
       }
   );
 }

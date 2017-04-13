@@ -1,5 +1,7 @@
+import json
 from rest_framework import viewsets, permissions, status
-from wordpairs.serializers import WordPairSerializer, UserResponseSerializer
+from rest_framework.decorators import detail_route
+from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, UserSerializer
 from wordpairs.models import WordPair, UserResponse, User
 from rest_framework.response import Response
 
@@ -32,9 +34,18 @@ class UserResponseViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
 
     # permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UserSerializer
+    def list(self, request):
+        queryset = User.objects.filter(username=request.user)
+        payload = {"id": queryset.values()[0]['id'], "is_test": queryset.values()[0]['is_test']}
+        return Response(payload, status=status.HTTP_200_OK)
 
-    def list(self, response):
-        def list(self, request):
-            print request.user.id
-            queryset = Participant.objects.filter(user_id=request.user.id)
-            return Response(queryset.values()[0]['is_test'], status=status.HTTP_200_OK)
+    @detail_route(methods=['post'])
+    def set_is_test(self, request, pk=None):
+        print 'hi'
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        is_test = body['is_test']
+        print is_test
+        User.objects.filter(id=pk).update(is_test=is_test)
+        return Response(status=status.HTTP_200_OK)
