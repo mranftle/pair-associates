@@ -23,7 +23,7 @@ var TestPhaseComponent = (function () {
             _this.wordPairs = wordPairs;
             _this.showCorrect = false;
             _this.selectedWordPair = _this.wordPairs[0];
-            _this.i = 0;
+            _this.responseNum = 0;
             // this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
             _this.responseTime = Date.now();
         });
@@ -39,15 +39,15 @@ var TestPhaseComponent = (function () {
         console.log(this.userResponses[this.userResponses.length - 1]);
         this.showCorrect = true;
         setTimeout(function () {
-            if (_this.i < _this.wordPairs.length - 1) {
-                _this.i++;
+            if (_this.responseNum < _this.wordPairs.length - 1) {
+                _this.responseNum++;
             }
             else {
                 //testing done, route to next component
                 //store responses
-                _this.i = 0;
+                _this.responseNum = 0;
             }
-            _this.selectedWordPair = _this.wordPairs[_this.i];
+            _this.selectedWordPair = _this.wordPairs[_this.responseNum];
             _this.showCorrect = false;
             _this.resetTimer();
         }, 1000); // FEEDBACK TIME

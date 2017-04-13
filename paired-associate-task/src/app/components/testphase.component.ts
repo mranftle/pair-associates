@@ -22,11 +22,11 @@ export class TestPhaseComponent {
   @ViewChild('response') response: any;
   wordPairs: WordPair[];
   selectedWordPair: WordPair;
-  userResponses:UserResponse[];
   showCorrect: boolean;
   responseTime: number;
+  responseNumber:number;
   timer: Timer;
-  i: number;
+  responseNum: number;
 
   constructor( private wordPairService: WordPairService) {}
 
@@ -36,8 +36,8 @@ export class TestPhaseComponent {
         this.wordPairs = wordPairs;
         this.showCorrect=false;
         this.selectedWordPair = this.wordPairs[0];
-        this.i = 0;
-        // this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
+        this.responseNum = 0;
+        this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
         this.responseTime = Date.now();
       }
     );
@@ -45,25 +45,28 @@ export class TestPhaseComponent {
 
   submitPair(): void {
     var elipsedTime = Date.now() - this.responseTime;
-    this.userResponses.push({
-      wordPair: this.selectedWordPair,
+    var userresponse = {
+      word1: this.selectedWordPair.word1,
+      word2: this.selectedWordPair.word2,
+      response_number:this.responseNum,
       response: this.response.nativeElement.value,
-      responseTime: elipsedTime,
+      response_time: elipsedTime,
 
-    });
-    console.log(this.userResponses[this.userResponses.length-1]);
+    };
+    console.log(typeof(userresponse));
+    this.wordPairService.saveUserResponse(userresponse);
     this.showCorrect = true;
     setTimeout(() => {
-      if (this.i < this.wordPairs.length - 1) {
-        this.i++;
+      if (this.responseNum < this.wordPairs.length - 1) {
+        this.responseNum++;
       } else {
 
         //testing done, route to next component
         //store responses
 
-        this.i = 0;
+        this.responseNum = 0;
       }
-      this.selectedWordPair = this.wordPairs[this.i];
+      this.selectedWordPair = this.wordPairs[this.responseNum];
       this.showCorrect = false;
       this.resetTimer()
 
@@ -83,8 +86,6 @@ export class TestPhaseComponent {
       word1: null,
       word2: null
     };
-    this.userResponses=[];
-
   }
 
 }

@@ -13,8 +13,10 @@ import {Observable} from "rxjs";
 export class WordPairService {
   private wordPairUrl = 'http://localhost:8000/wordpairs';
   private isTestUrl = 'http://localhost:8000/istest';
+  private userResponseUrl='http://localhost:8000/userresponse/';
   constructor(private http: Http) { }
 
+  // get word pairs for study and testing
   getWordPairs() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
@@ -48,9 +50,22 @@ export class WordPairService {
     this.http.post(url,body,options) // ...using post request
       .map(res => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => 'Server error') //...errors if
-      .subscribe();;
+      .subscribe();
   }
 
+  // save user response
+  saveUserResponse(userresponse:any) {
+    let body = JSON.stringify(userresponse);
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let headers = new Headers({'Authorization': 'JWT '+ currentUser.token,
+                               'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers:headers });
+
+    this.http.post(this.userResponseUrl, body, options) // ...using post request
+      .map(res => res.json()) // ...and calling .json() on the response to return data
+      .catch((error:any) => 'Server error') //...errors if
+      .subscribe();
+  }
 
   //more detailed error message to come, move to error file
   private handleError(error: any) {

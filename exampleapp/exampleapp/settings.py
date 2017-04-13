@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'wordpairs.User'
-
 # Application definition
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

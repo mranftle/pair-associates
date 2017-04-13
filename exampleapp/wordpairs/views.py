@@ -19,17 +19,17 @@ class UserResponseViewSet(viewsets.ModelViewSet):
     queryset = UserResponse.objects.all()
     serializer_class = UserResponseSerializer
 
-    def perform_create(self,serializer):
-        serializer.save(owner=self.request.participant)
-
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
+        request.data['user_id'] = int(request.user.id)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            self.perform_create(serializer)
-            headers=self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+            UserResponse.objects.create(**serializer.validated_data)
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
+        return Response({
+            'status': 'Bad Request',
+            'message': 'Response could not be created with received data'
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 class UserViewSet(viewsets.ModelViewSet):
 
