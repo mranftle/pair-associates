@@ -66,7 +66,7 @@ MIDDLEWARE_CLASSES = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'exampleapp.urls'
+ROOT_URLCONF = 'pairs_api.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'exampleapp.wsgi.application'
+WSGI_APPLICATION = 'pairs_api.wsgi.application'
 
 
 # Database
