@@ -20,7 +20,7 @@ from wordpairs import views
 
 router = routers.DefaultRouter()
 router.register(r'wordpairs', views.WordPairViewSet, 'word-pair')
-router.register(r'instructions', views.UserViewSet, 'instructions')
+router.register(r'istest', views.UserViewSet, 'istest')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

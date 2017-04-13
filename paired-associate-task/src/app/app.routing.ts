@@ -10,8 +10,8 @@ import {IntroComponent} from "./components/instructions.component";
 
 
 const appRoutes: Routes = [
-  { path: 'intro', component: IntroComponent},//, canActivate:[AuthGuard]},
-  { path: 'study-phase', component: StudyPhaseComponent},//, canActivate:[AuthGuard] },
+  { path: 'intro', component: IntroComponent, canActivate:[AuthGuard]},
+  { path: 'study-phase', component: StudyPhaseComponent, canActivate:[AuthGuard] },
   { path: 'test-phase', component: TestPhaseComponent, canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent},
 
