@@ -21,6 +21,7 @@ from wordpairs import views
 router = routers.DefaultRouter()
 router.register(r'wordpairs', views.WordPairViewSet, 'word-pair')
 router.register(r'istest', views.UserViewSet, 'istest')
+router.register(r'userresponse', views.UserResponseViewSet, 'userresponse')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

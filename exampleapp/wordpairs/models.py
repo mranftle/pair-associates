@@ -6,13 +6,13 @@ class WordPair(models.Model):
     word2 = models.TextField()
 
 class UserResponse(models.Model):
-    id= models.IntegerField(auto_created=True, primary_key=True)
-    username= models.TextField()
+    id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
     word1 = models.TextField()
     word2 = models.TextField()
     response_number = models.IntegerField()
-    response = models.TextField()
+    response = models.TextField(blank=True)
     response_time = models.IntegerField()
 
     class Meta:
