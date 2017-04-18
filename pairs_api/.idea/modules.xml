@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/Documents/research/new_stuff/django_angular/pair-associates/pairs_api/.idea/exampleapp.iml" filepath="$USER_HOME$/Documents/research/new_stuff/django_angular/pair-associates/pairs_api/.idea/exampleapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/exampleapp.iml" filepath="$PROJECT_DIR$/.idea/exampleapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pairs_api.iml" filepath="$PROJECT_DIR$/.idea/pairs_api.iml" />
     </modules>
   </component>
 </project>
