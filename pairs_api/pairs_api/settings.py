@@ -93,11 +93,11 @@ WSGI_APPLICATION = 'pairs_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'test_docker',
-        'PASSWORD': 'test',
-        'NAME': 'pair_associates',
-        'HOST': 'db',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'NAME': 'composetest',
+        'USER': 'composetest',
+        'PASSWORD': 'testpassword',
+        'HOST': 'db',
+        'PORT': '3306'
     }
 }
 

@@ -1,54 +1,20 @@
-
-# pairs_api:
-#   container_name: pairs_api
-#   build: .
-#   environment:
-#     - PYTHONPATH=/code/server/
-#     - DJANGO_SETTINGS_MODULE=pairs_api.settings
-#   command: python pairs_api/manage.py runserver
-#   volumes:
-#     - .:/code
-#   ports:
-#     - "8000:8000"
-#   links:
-#     - db
 version: '2'
 services:
-  db:
-    restart: "always"
-    container_name: pairs_db
-    image: mysql
+  angular:
+    build: ./paired-associate-task
     ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: pair_associates
-      MYSQL_USER: test_docker
-      MYSQL_PASSWORD: test
-  # nginx:
-  #   ports:
-  #       - "80:80"
-  #   build: ./nginx
-  #   links:
-  #       - pairs_api:web
-  #   volumes_from:
-  #       - angular2
-  # pairs_app:
-  #   build: ./paired-associate-task
-  #   entrypoint: "true"
-  #   volumes:
-  #       - /usr/share/nginx/paired-associate-task
-  pairs_api:
-    restart: "always"
-    container_name: pairs_api
+      - "4200:4200"
+  django:
     build: ./pairs_api
-    environment:
-      - PYTHONPATH=/code/server/
-      - DJANGO_SETTINGS_MODULE=pairs_api.settings
-    command: pairs_api/manage.py runserver
-    volumes:
-      - .:/code
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
-    depends_on:
+    links:
       - db
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=composetest
+      - MYSQL_PASSWORD=testpassword
+      - MYSQL_DATABASE=composetest
