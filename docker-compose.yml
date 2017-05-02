@@ -2,8 +2,6 @@ version: '2'
 services:
   angular:
     build: ./paired-associate-task
-    ports:
-      - "4200:4200"
   django:
     build: ./pairs_api
     command: python manage.py runserver 0.0.0.0:8000
@@ -12,7 +10,7 @@ services:
     links:
       - db
   db:
-    image: mysql
+    image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
       - MYSQL_USER=composetest
