@@ -2,6 +2,8 @@ version: '2'
 services:
   angular:
     build: ./paired-associate-task
+    ports:
+      - "80:80"
   django:
     build: ./pairs_api
     command: python manage.py runserver 0.0.0.0:8000
