@@ -17,7 +17,7 @@ import {WordPairService} from "../services/wordpair.service";
 })
 
 export class IntroComponent implements OnInit {
-  isTest=false;
+  isTest=0;
   userId: number;
 
   constructor(private router: Router,
@@ -26,14 +26,26 @@ export class IntroComponent implements OnInit {
   }
 
   startStudy(): void {
-    this.wordPairService.setTestOrTrain(this.userId,true);
+    this.wordPairService.setTestOrTrain(this.userId,1);
     this.router.navigate(['/study-phase'])
 
   }
 
-  startTest(): void {
-    this.wordPairService.setTestOrTrain(this.userId,false);
+  startTest1(): void {
+    this.wordPairService.setTestOrTrain(this.userId,2);
+    localStorage.setItem('feedback', JSON.stringify(true));
     this.router.navigate(['/test-phase']);
+  }
+
+  startTest2(): void {
+    this.wordPairService.setTestOrTrain(this.userId, 3);
+    localStorage.setItem('feedback', JSON.stringify(false));
+    this.router.navigate(['/test-phase']);
+  }
+
+  endExperiment(): void {
+    this.wordPairService.setTestOrTrain(this.userId, 0);
+    this.router.navigate(['/login']);
   }
 
   // get test status and user_id
@@ -41,7 +53,8 @@ export class IntroComponent implements OnInit {
     this.wordPairService.getTestOrTrain().then(
       (userInfo) => {
         this.userId = userInfo['id'];
-        this.isTest = userInfo['is_test'];
+        this.isTest = userInfo['test_phase'];
+        console.log(this.isTest);
       }
   );
 }

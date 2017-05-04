@@ -46,26 +46,27 @@ export class TestPhaseComponent implements OnInit {
 
   submitPair(): void {
     var elipsedTime = Date.now() - this.responseTime;
+    var ur = this.response.nativeElement.value || null
     var userresponse = {
       word1: this.selectedWordPair.word1,
       word2: this.selectedWordPair.word2,
       response_number:this.responseNum,
-      response: this.response.nativeElement.value,
+      response:  ur,
       response_time: elipsedTime,
 
     };
-    console.log(typeof(userresponse));
     this.wordPairService.saveUserResponse(userresponse);
-    this.showCorrect = true;
+    if(localStorage.getItem('feedback') == 'true') {
+      this.showCorrect = true;
+    }
     setTimeout(() => {
       if (this.responseNum < this.wordPairs.length - 1) {
         this.responseNum++;
       } else {
 
         //testing done, route to next component
-        //store responses
-        // this.router.navigate(['/instructions'])
-        this.responseNum = 0;
+        clearTimeout(this.timer);
+        this.router.navigate(['/instructions'])
       }
       this.selectedWordPair = this.wordPairs[this.responseNum];
       this.showCorrect = false;

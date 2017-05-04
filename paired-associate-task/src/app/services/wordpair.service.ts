@@ -31,7 +31,6 @@ export class WordPairService {
   getTestOrTrain() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
-    console.log(headers);
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.isTestUrl, options)
       .toPromise()
@@ -40,13 +39,12 @@ export class WordPairService {
   }
 
   // set whether a user is testing or training
-  setTestOrTrain(user_id:number, is_test: boolean) {
-    let body = JSON.stringify({is_test:is_test});
+  setTestOrTrain(user_id:number, is_test: number) {
+    let body = JSON.stringify({test_phase:is_test});
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
     let options = new RequestOptions({ headers:headers });
     let url = this.isTestUrl + '/' + user_id + '/set_is_test/';
-    console.log(url,body);
     this.http.post(url,body,options) // ...using post request
       .map(res => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => 'Server error') //...errors if
