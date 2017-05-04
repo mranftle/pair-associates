@@ -37,15 +37,13 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     def list(self, request):
         queryset = User.objects.filter(username=request.user)
-        payload = {"id": queryset.values()[0]['id'], "is_test": queryset.values()[0]['is_test']}
+        payload = {"id": queryset.values()[0]['id'], "test_phase": queryset.values()[0]['test_phase']}
         return Response(payload, status=status.HTTP_200_OK)
 
     @detail_route(methods=['post'])
     def set_is_test(self, request, pk=None):
-        print 'hi'
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        is_test = body['is_test']
-        print is_test
-        User.objects.filter(id=pk).update(is_test=is_test)
+        is_test = body['test_phase']
+        User.objects.filter(id=pk).update(test_phase=is_test)
         return Response(status=status.HTTP_200_OK)
