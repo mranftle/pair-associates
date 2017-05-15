@@ -31,7 +31,7 @@ export class IntroComponent implements OnInit {
   }
 
   startTest1(): void {
-    this.router.navigate(['/test-phase']);
+    this.router.navigate(['/test-phase'], {queryParams: {test_phase: this.isTest}});
   }
 
   startTest2(): void {

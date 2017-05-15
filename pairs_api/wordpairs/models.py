@@ -14,6 +14,7 @@ class UserResponse(models.Model):
     response_number = models.IntegerField()
     response = models.TextField(blank=True, null=True)
     response_time = models.IntegerField()
+    test_phase = models.IntegerField(blank=False, default=0)
 
     class Meta:
         ordering = ('created',)
