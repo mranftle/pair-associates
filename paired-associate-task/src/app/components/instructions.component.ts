@@ -26,25 +26,20 @@ export class IntroComponent implements OnInit {
   }
 
   startStudy(): void {
-    this.wordPairService.setTestOrTrain(this.userId,1);
     this.router.navigate(['/study-phase'])
 
   }
 
   startTest1(): void {
-    this.wordPairService.setTestOrTrain(this.userId,2);
-    localStorage.setItem('feedback', JSON.stringify(true));
     this.router.navigate(['/test-phase']);
   }
 
   startTest2(): void {
-    this.wordPairService.setTestOrTrain(this.userId, 3);
-    localStorage.setItem('feedback', JSON.stringify(false));
+
     this.router.navigate(['/test-phase']);
   }
 
   endExperiment(): void {
-    this.wordPairService.setTestOrTrain(this.userId, 0);
     this.router.navigate(['/login']);
   }
 
@@ -54,7 +49,14 @@ export class IntroComponent implements OnInit {
       (userInfo) => {
         this.userId = userInfo['id'];
         this.isTest = userInfo['test_phase'];
-        console.log(this.isTest);
+
+        // cycle test phases
+        if(this.isTest >= 5){
+          this.wordPairService.setTestOrTrain(this.userId, 0);
+        }
+        else {
+          this.wordPairService.setTestOrTrain(this.userId, this.isTest + 1);
+        }
       }
   );
 }

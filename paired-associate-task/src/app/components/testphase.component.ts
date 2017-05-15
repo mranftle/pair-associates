@@ -56,9 +56,6 @@ export class TestPhaseComponent implements OnInit {
 
     };
     this.wordPairService.saveUserResponse(userresponse);
-    if(localStorage.getItem('feedback') == 'true') {
-      this.showCorrect = true;
-    }
     setTimeout(() => {
       if (this.responseNum < this.wordPairs.length - 1) {
         this.responseNum++;
