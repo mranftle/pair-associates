@@ -27,6 +27,7 @@ export class StudyPhaseComponent {
         this.wordPairs = wordPairs;
         this.selectedWordPair = this.wordPairs[0];
         this.i = 0;
+        console.log(this.wordPairs);
         this.cycleWords();
       }
     );
@@ -36,7 +37,7 @@ export class StudyPhaseComponent {
     setTimeout(() => {
       this.selectedWordPair = this.wordPairs[this.i];
       this.i++;
-      if (this.i < this.wordPairs.length) {
+      if (this.i <= this.wordPairs.length) {
         this.cycleWords();
       }
       else {

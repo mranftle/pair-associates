@@ -4,7 +4,7 @@ from rest_framework import serializers
 class UserResponseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = UserResponse
-        fields=('id','user_id','word1','word2','response_number', 'response', 'response_time');
+        fields=('id','user_id','word1','word2','response_number', 'response', 'response_time', 'test_phase');
 
 class WordPairSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
