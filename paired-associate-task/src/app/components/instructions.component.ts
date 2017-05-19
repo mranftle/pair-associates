@@ -62,7 +62,7 @@ export class IntroComponent implements OnInit {
 
         // cycle test phases
         if(this.isTest >= 5){
-          this.wordPairService.setTestOrTrain(this.userId, 0);
+          this.wordPairService.setTestOrTrain(this.userId, 1);
         }
         else {
           this.wordPairService.setTestOrTrain(this.userId, this.isTest + 1);
