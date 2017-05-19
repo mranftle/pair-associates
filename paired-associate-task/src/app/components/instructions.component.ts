@@ -13,11 +13,13 @@ import {WordPairService} from "../services/wordpair.service";
 @Component({
   selector:'instructions',
   templateUrl: '../templates/instructions.component.html',
+  styleUrls: ['../stylesheets/studyphase.component.css'],
   providers: [AuthService]
 })
 
 export class IntroComponent implements OnInit {
   isTest=0;
+  cue=false;
   userId: number;
 
   constructor(private router: Router,
@@ -26,21 +28,29 @@ export class IntroComponent implements OnInit {
   }
 
   startStudy(): void {
+    this.cue = true;
+    setTimeout(function(){
+      this.cue = false;
+
+    }, 1000);
     this.router.navigate(['/study-phase'])
 
   }
 
   startTest1(): void {
+    this.cue = true;
+    setTimeout(function(){
+      this.cue = false;
+    }, 1000);
     this.router.navigate(['/test-phase'], {queryParams: {test_phase: this.isTest}});
   }
 
-  startTest2(): void {
-
-    this.router.navigate(['/test-phase']);
-  }
-
   endExperiment(): void {
-    this.router.navigate(['/login']);
+    this.cue = true;
+    setTimeout(function(){
+      this.cue = false;
+    }, 1000);
+      this.router.navigate(['/login']);
   }
 
   // get test status and user_id
@@ -52,7 +62,7 @@ export class IntroComponent implements OnInit {
 
         // cycle test phases
         if(this.isTest >= 5){
-          this.wordPairService.setTestOrTrain(this.userId, 0);
+          this.wordPairService.setTestOrTrain(this.userId, 1);
         }
         else {
           this.wordPairService.setTestOrTrain(this.userId, this.isTest + 1);
