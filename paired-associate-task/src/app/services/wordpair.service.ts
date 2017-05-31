@@ -11,9 +11,9 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  private wordPairUrl = 'http://localhost:8000/wordpairs';
-  private isTestUrl = 'http://localhost:8000/istest';
-  private userResponseUrl='http://localhost:8000/userresponse/';
+  private wordPairUrl = '/api/wordpairs';
+  private isTestUrl = '/api/istest';
+  private userResponseUrl='/api/userresponse/';
   constructor(private http: Http) { }
 
   // get word pairs for study and testing
