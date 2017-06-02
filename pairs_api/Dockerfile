@@ -5,3 +5,5 @@
  ADD requirements.txt /code/
  RUN pip install -r requirements.txt
  ADD . /code/
+# CMD ["python","manage.py", "runserver"]
+# CMD ["./docker-entrypoint.sh"]

@@ -6,15 +6,15 @@ services:
       - "80:80"
   django:
     build: ./pairs_api
-    # command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
-    links:
-      - db
-  db:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_USER=composetest
-      - MYSQL_PASSWORD=testpassword
-      - MYSQL_DATABASE=composetest
+    external_links:
+      - pairassociates_db_1
+  # db:
+  #   image: mysql:latest
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=rootpassword
+  #     - MYSQL_USER=composetest
+  #     - MYSQL_PASSWORD=testpassword
+  #     - MYSQL_DATABASE=composetest

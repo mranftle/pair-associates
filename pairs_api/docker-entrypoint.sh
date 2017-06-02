@@ -5,6 +5,9 @@ echo "Collect static files"
 python manage.py collectstatic --noinput
 
 # Apply database migrations
+echo "Apply database auth migrations"
+python manage.py migrate auth
+
 echo "Apply database migrations"
 python manage.py migrate
 
