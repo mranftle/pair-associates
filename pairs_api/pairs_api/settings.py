@@ -93,9 +93,9 @@ WSGI_APPLICATION = 'pairs_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'composetest',
-        'USER': 'composetest',
-        'PASSWORD': 'testpassword',
+        'NAME': 'pairassociates',
+        'USER': 'pairs',
+        'PASSWORD': 'dogchair',
         'HOST': 'pairs_db',
         'PORT': '3306'
     }
