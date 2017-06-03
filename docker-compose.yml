@@ -1,22 +1,25 @@
-version: '2'
+version: '3'
 services:
-  angular:
+  angular-nginx:
+    container_name: angular-nginx
     build: ./paired-associate-task
     ports:
       - "80:80"
-    volumes:
-      - ./letsencrypt/well-known:/www/letsencrypt
-  django:
+    links:
+      - pairs-api:pairs-api
+  pairs-api:
+    container_name: pairs-api
     build: ./pairs_api
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
-    links:
-      - db
-  db:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_USER=composetest
-      - MYSQL_PASSWORD=testpassword
-      - MYSQL_DATABASE=composetest
+    external_links:
+      - pairs_db:pairs_db
+  # pairs_db:
+  #   image: mysql:latest
+  #   container_name: pairs_db
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=rootpassword
+  #     - MYSQL_USER=composetest
+  #     - MYSQL_PASSWORD=testpassword
+  #     - MYSQL_DATABASE=composetest
