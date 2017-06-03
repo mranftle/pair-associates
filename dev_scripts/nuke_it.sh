@@ -3,4 +3,4 @@ docker rm $(docker ps -a -q);
 docker rmi $(docker images -a -q);
 
 
-docker-compose up --build -d;
+#docker-compose up --build -d;

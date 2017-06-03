@@ -1,0 +1,8 @@
+
+docker run --name pairs_db \
+     -v /pairs_data:/var//lib/mysql \
+     -e MYSQL_ROOT_PASSWORD=rootpassword \
+     -e MYSQL_USER=composetest \
+     -e MYSQL_PASSWORD=testpassword \
+     -e MYSQL_DATABASE=composetest \
+     -d mysql:latest

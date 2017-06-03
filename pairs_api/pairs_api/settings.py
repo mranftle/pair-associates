@@ -94,7 +94,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pairassociates',
-        'USER': 'pairs',
+        'USER': 'root',
         'PASSWORD': 'dogchair',
         'HOST': 'pairs_db',
         'PORT': '3306'

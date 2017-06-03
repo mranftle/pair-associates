@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Collect static files
-echo "Collect static files"
-python manage.py collectstatic --noinput
+echo "making migrations"
+python manage.py makemigrations
 
 # Apply database migrations
 echo "Apply database auth migrations"
