@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   angular-nginx:
     container_name: angular-nginx
@@ -6,20 +6,22 @@ services:
     ports:
       - "80:80"
     links:
-      - pairs-api:pairs-api
-  pairs-api:
-    container_name: pairs-api
+      - pairs_api
+    depends_on:
+      - pairs_api
+  pairs_api:
+    container_name: pairs_api
     build: ./pairs_api
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
-    external_links:
-      - pairs_db:pairs_db
-  # pairs_db:
-  #   image: mysql:latest
-  #   container_name: pairs_db
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=rootpassword
-  #     - MYSQL_USER=composetest
-  #     - MYSQL_PASSWORD=testpassword
-  #     - MYSQL_DATABASE=composetest
+    links:
+      - pairs_db
+    depends_on:
+      - pairs_db
+  pairs_db:
+    image: mysql:latest
+    container_name: pairs_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=dogchair
+      - MYSQL_DATABASE=pairassociates
