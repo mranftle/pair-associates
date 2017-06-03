@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'composetest',
         'USER': 'composetest',
         'PASSWORD': 'testpassword',
-        'HOST': 'pairassociates_db_1',
+        'HOST': 'pairs_db',
         'PORT': '3306'
     }
 }
