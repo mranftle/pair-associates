@@ -1,0 +1,8 @@
+#compiled files
+*.pyc
+
+#django migrations
+/wordpairs/migrations
+
+#ide settings
+/.idea
