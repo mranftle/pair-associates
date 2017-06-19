@@ -1,18 +1,16 @@
 version: '2'
 services:
-  angular-nginx:
+  nginx-proxy:
     image: jwilder/nginx-proxy
-    container_name: angular-nginx-proxy
+    container_name: nginx-proxy
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - "/etc/nginx/vhost.d"
-      - "/usr/share/nginx/html"
-      - "/etc/nginx/certs"
+      # - "/etc/nginx/vhost.d"
+      # - "/usr/share/nginx/html"
+      # - "/etc/nginx/certs"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "./nginx/pairs.app.com.conf:/etc/nginx/conf.d/pairs.app.com.conf"
-      - "./paired-associate-task/dist:/www/data"
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
   # letsencrypt-nginx-proxy-compainion:
@@ -22,6 +20,15 @@ services:
   #     - "/var/run/docker.sock:/var/run/docker.sock:ro"
   #   volumes_from:
   #     - "angular-nginx"
+  pairs_app:
+    container_name: pairs_app
+    build: ./paired-associate-task
+    expose:
+      - "4200"
+    environment:
+      - VIRTUAL_HOST=pairs.app.com
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
   pairs_api:
     container_name: pairs_api
     build: ./pairs_api
@@ -29,6 +36,8 @@ services:
       - "8000"
     environment:
       - VIRTUAL_HOST=pairs.api.com
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
     links:
       - pairs_db
   pairs_db:
