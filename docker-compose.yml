@@ -44,11 +44,3 @@ services:
       - LETSENCRYPT_EMAIL=matthew.ranftle@gmail.com
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
-    links:
-      - pairs_db
-  pairs_db:
-    image: mysql:latest
-    container_name: pairs_db
-    environment:
-      - MYSQL_ROOT_PASSWORD=dogchair
-      - MYSQL_DATABASE=pairassociates
