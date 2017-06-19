@@ -1,23 +1,35 @@
 version: '2'
 services:
   angular-nginx:
-    container_name: angular-nginx
-    build: ./paired-associate-task
+    image: jwilder/nginx-proxy
+    container_name: angular-nginx-proxy
     ports:
       - "80:80"
-    links:
-      - pairs_api
-    depends_on:
-      - pairs_api
+      - "443:443"
+    volumes:
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "/etc/nginx/certs"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./nginx/pairs.app.com.conf:/etc/nginx/conf.d/pairs.app.com.conf"
+      - "./paired-associate-task/dist:/www/data"
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
+  # letsencrypt-nginx-proxy-compainion:
+  #   image: jrcs/letsencrypt-nginx-proxy-companion
+  #   container_name: letsencrypt-nginx-proxy-companion
+  #   volumes:
+  #     - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  #   volumes_from:
+  #     - "angular-nginx"
   pairs_api:
     container_name: pairs_api
     build: ./pairs_api
-    # command: python manage.py runserver 0.0.0.0:8000
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
+    environment:
+      - VIRTUAL_HOST=pairs.api.com
     links:
-      - pairs_db
-    depends_on:
       - pairs_db
   pairs_db:
     image: mysql:latest
