@@ -20,8 +20,10 @@ RUN npm install -g angular-cli
 RUN npm install -g http-server
 
 # clone repo and build
-RUN git clone https://github.com/mranftle/pair-associates.git
-WORKDIR pair-associates/paired-associate-task
-RUN npm install
-RUN npm build --prod
+# RUN git clone https://github.com/mranftle/pair-associates.git
+# WORKDIR pair-associates/paired-associate-task
+# RUN npm install
+# RUN npm build --prod
+RUN mkdir dist
+COPY dist/ dist
 CMD http-server ./dist -p 4200

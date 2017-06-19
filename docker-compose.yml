@@ -7,26 +7,26 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      # - "/etc/nginx/vhost.d"
-      # - "/usr/share/nginx/html"
-      # - "/etc/nginx/certs"
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "/etc/nginx/certs"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
-  # letsencrypt-nginx-proxy-compainion:
-  #   image: jrcs/letsencrypt-nginx-proxy-companion
-  #   container_name: letsencrypt-nginx-proxy-companion
-  #   volumes:
-  #     - "/var/run/docker.sock:/var/run/docker.sock:ro"
-  #   volumes_from:
-  #     - "angular-nginx"
+  letsencrypt-nginx-proxy-compainion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx-proxy-companion
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - "angular-nginx"
   pairs_app:
     container_name: pairs_app
     build: ./paired-associate-task
     expose:
       - "4200"
     environment:
-      - VIRTUAL_HOST=pairs.app.com
+      - VIRTUAL_HOST=ec2-54-149-174-220.us-west-2.compute.amazonaws.com
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
   pairs_api:
@@ -35,7 +35,7 @@ services:
     expose:
       - "8000"
     environment:
-      - VIRTUAL_HOST=pairs.api.com
+      - VIRTUAL_HOST=ec2-54-149-174-220.us-west-2.compute.amazonaws.com
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
     links:
