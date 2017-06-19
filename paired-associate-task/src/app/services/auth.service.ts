@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  private userUrl = 'http://pairs.api.com/api-token-auth/';
+  private userUrl = 'pairsassociatesapi.servehttp.com/api-token-auth/';
   private postResponse='';
   constructor(private http: Http) { }
 

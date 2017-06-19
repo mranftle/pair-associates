@@ -25,7 +25,7 @@ SECRET_KEY = '1fpqkw=10wd9&-4fj^+ql_r)4$=j7lu4#0j7hodlyyv52fb0*('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'pairs.api.com']
+ALLOWED_HOSTS = [u'pairsassociatesapi.servehttp.com']
 
 AUTH_USER_MODEL = 'wordpairs.User'
 # Application definition

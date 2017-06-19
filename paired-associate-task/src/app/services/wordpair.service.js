@@ -15,7 +15,7 @@ require('rxjs/add/operator/map');
 var WordPairService = (function () {
     function WordPairService(http) {
         this.http = http;
-        this.wordPairUrl = 'http://localhost:8000/wordpairs';
+        this.wordPairUrl = 'pairsassociatesapi.servehttp.com/wordpairs';
     }
     WordPairService.prototype.getWordPairs = function () {
         return this.http.get(this.wordPairUrl)
