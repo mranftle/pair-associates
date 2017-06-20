@@ -7,42 +7,41 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      # - "/etc/nginx/vhost.d"
-      # - "/usr/share/nginx/html"
-      # - "/etc/nginx/certs"
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "/etc/nginx/certs:/etc/nginx/certs:ro"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
-  # letsencrypt-nginx-proxy-compainion:
-  #   image: jrcs/letsencrypt-nginx-proxy-companion
-  #   container_name: letsencrypt-nginx-proxy-companion
-  #   volumes:
-  #     - "/var/run/docker.sock:/var/run/docker.sock:ro"
-  #   volumes_from:
-  #     - "angular-nginx"
-  pairs_app:
-    container_name: pairs_app
-    build: ./paired-associate-task
-    expose:
-      - "4200"
-    environment:
-      - VIRTUAL_HOST=pairs.app.com
+  letsencrypt-nginx:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx
     volumes:
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "/etc/nginx/certs:/etc/nginx/certs:rw"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - "nginx-proxy"
   pairs_api:
     container_name: pairs_api
     build: ./pairs_api
     expose:
       - "8000"
     environment:
-      - VIRTUAL_HOST=pairs.api.com
+      - VIRTUAL_HOST=pairsassociatesapi.servehttp.com
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=pairsassociatesapi.servehttp.com
+      - LETSENCRYPT_EMAIL=matthew.ranftle@gmail.com
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
-    links:
-      - pairs_db
-  pairs_db:
-    image: mysql:latest
-    container_name: pairs_db
+  pairs_app:
+    container_name: pairs_app
+    build: ./paired-associate-task
+    expose:
+      - "4200"
     environment:
-      - MYSQL_ROOT_PASSWORD=dogchair
-      - MYSQL_DATABASE=pairassociates
+      - VIRTUAL_HOST=pairassociates.ddns.net
+      - VIRTUAL_PORT=4200
+      - LETSENCRYPT_HOST=pairassociates.ddns.net
+      - LETSENCRYPT_EMAIL=matthew.ranftle@gmail.com
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"

@@ -2,7 +2,7 @@
 *.pyc
 
 #django migrations
-/wordpairs/migrations
+#/wordpairs/migrations
 
 #ide settings
 /.idea
