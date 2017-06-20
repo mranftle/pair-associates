@@ -9,14 +9,15 @@ services:
     volumes:
       - "/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
-      - "/etc/nginx/certs"
+      - "/etc/nginx/certs:/etc/nginx/certs:ro"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
-  letsencrypt-nginx-proxy-compainion:
+  letsencrypt-nginx:
     image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx
     volumes:
+      - "/etc/nginx/certs:/etc/nginx/certs:rw"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     volumes_from:
       - "nginx-proxy"
