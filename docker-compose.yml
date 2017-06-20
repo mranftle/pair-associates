@@ -20,18 +20,6 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     volumes_from:
       - "nginx-proxy"
-  pairs_app:
-    container_name: pairs_app
-    build: ./paired-associate-task
-    expose:
-      - "4200"
-    environment:
-      - VIRTUAL_HOST=pairassociates.ddns.net
-      - VIRTUAL_PORT=4200
-      - LETSENCRYPT_HOST=pairassociates.ddns.net
-      - LETSENCRYPT_EMAIL=matthew.ranftle@gmail.com
-    volumes:
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
   pairs_api:
     container_name: pairs_api
     build: ./pairs_api
@@ -41,6 +29,18 @@ services:
       - VIRTUAL_HOST=pairsassociatesapi.servehttp.com
       - VIRTUAL_PORT=8000
       - LETSENCRYPT_HOST=pairsassociatesapi.servehttp.com
+      - LETSENCRYPT_EMAIL=matthew.ranftle@gmail.com
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+  pairs_app:
+    container_name: pairs_app
+    build: ./paired-associate-task
+    expose:
+      - "4200"
+    environment:
+      - VIRTUAL_HOST=pairassociates.ddns.net
+      - VIRTUAL_PORT=4200
+      - LETSENCRYPT_HOST=pairassociates.ddns.net
       - LETSENCRYPT_EMAIL=matthew.ranftle@gmail.com
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
