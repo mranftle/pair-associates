@@ -1,6 +1,12 @@
 <div *ngIf="isTest==1 && cue==false" style="text-align:center">
   <p>
-    Training Instructions
+    you will now be given a memory test. We will initially present you with pairs of words (e.g. chair-wall) for 4 seconds each. We world first like you to study these word pairs, such that you can come up with the second word 'wall' when presented the first word 'chair'.
+    After the study period you will be given two test cycles in which we will give you the first word 'chair' --??? and you will be asked to type in the second word 'wall'.
+    You will have about 8 seconds to respond and then will given the correct paired item for 4 seconds.
+
+    After you go through the second testing cycle, we want you to relax and go through your normal sleep routine.
+
+    In the morning after you are awake, we would like you to log in again.
   </p>
   <div>
     <button (click)="startStudy()" >Study</button>
@@ -10,7 +16,7 @@
 
 <div *ngIf="(isTest==2 || isTest==3) && cue==false" style="text-align:center">
   <p>
-    Test Instructions Feedback
+    You will now begin testing with feedback. You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
   </p>
   <div>
     <button (click)="startTest1()">Begin</button>
@@ -19,7 +25,8 @@
 
 <div *ngIf="isTest==4 && cue==false" style="text-align:center">
   <p>
-    Test Instructions No Feedback
+    Good Morning! We will now give you one final test of the word pairs you studied last night. There will be no feedback associated with this test.
+    You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
   </p>
   <div>
     <button (click)="startTest1()">Begin</button>
@@ -28,7 +35,10 @@
 
 <div *ngIf="isTest==5 && cue==false" style="text-align:center">
   <p>
-    Finished
+    Thank you for participating in this memory task.
+    We are interested in the relationship between characteristics of your sleep pattern/quality and memory performance.
+    There has been accumulating evidence that deep stages of sleep are related to better memory performance.
+
   </p>
   <div>
     <button (click)="endExperiment()">End</button>
