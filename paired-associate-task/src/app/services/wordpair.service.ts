@@ -2,6 +2,7 @@
  * Created by matthewRanftle1 on 3/1/17.
  */
 import { Injectable } from '@angular/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -11,14 +12,14 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs';
-  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest';
-  private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
+  private wordPairUrl = 'http://127.0.0.1:8000/wordpairs';
+  private isTestUrl = 'http://127.0.0.1:8000/istest';
+  private userResponseUrl='http://127.0.0.1:8000/userresponse/';
   constructor(private http: Http) { }
 
   // get word pairs for study and testing
   getWordPairs() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.wordPairUrl, options)
@@ -29,7 +30,7 @@ export class WordPairService {
 
   // return whether a user is testing or training
   getTestOrTrain() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.isTestUrl, options)

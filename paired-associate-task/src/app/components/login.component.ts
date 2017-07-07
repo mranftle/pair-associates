@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
       .subscribe(
         data => {
           this.alertService.success('login success')
-          this.router.navigate(['/instructions']);
+          this.router.navigate(['/memory-task']);
         },
         error => {
           this.alertService.error(error)

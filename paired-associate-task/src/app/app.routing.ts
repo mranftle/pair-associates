@@ -7,12 +7,14 @@ import {TestPhaseComponent} from "./components/testphase.component";
 import {StudyPhaseComponent} from "./components/studyphase.component";
 import {AuthGuard} from "./gaurds/auth.gaurd";
 import {IntroComponent} from "./components/instructions.component";
+import {MemoryTaskComponent} from "./components/memorytask/memorytask.component";
 
 
 const appRoutes: Routes = [
-  { path: 'instructions', component: IntroComponent},//, canActivate:[AuthGuard]},
-  { path: 'study-phase', component: StudyPhaseComponent},//, canActivate:[AuthGuard] },
-  { path: 'test-phase', component: TestPhaseComponent},//, canActivate:[AuthGuard] },
+  // { path: 'instructions', component: IntroComponent},//, canActivate:[AuthGuard]},
+  // { path: 'study-phase', component: StudyPhaseComponent},//, canActivate:[AuthGuard] },
+  // { path: 'test-phase', component: TestPhaseComponent},//, canActivate:[AuthGuard] },
+  { path: 'memory-task', component: MemoryTaskComponent},
   { path: 'login', component: LoginComponent},
 
   // otherwise redirect to home

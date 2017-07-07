@@ -14,10 +14,12 @@ import {routing} from "./app.routing";
 import {IntroComponent} from "./components/instructions.component";
 import {WordPairService} from "./services/wordpair.service";
 import {AutofocusDirective} from "./directives/autofocus.directive";
+import {MemoryTaskComponent} from "./components/memorytask/memorytask.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    MemoryTaskComponent,
     IntroComponent,
     StudyPhaseComponent,
     TestPhaseComponent,
