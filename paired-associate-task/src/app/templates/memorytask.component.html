@@ -4,15 +4,18 @@
 </head>
 <body>
 <div *ngIf="loaded == true">
-  {{wordPairs}}
-  {{jwt}}
-  {{userId}}
-  {{isTest}}
+  <!--{{wordPairs}}-->
+  <!--{{jwt}}-->
+  <!--{{userId}}-->
+  <!--{{testPhase}}-->
+  <instructions [testPhase]="testPhase" [(instructions)]="instructions"></instructions>
 
-  <study-phase [wordPairs]="wordPairs" [testPhase]="isTest"></study-phase>
-  <!--<test-phase-no-feed-back [wordPairs]="wordPairs" [testPhase]="isTest"></test-phase-no-feed-back>-->
-  <!--<test-phase-feed-back [wordPairs]="wordPairs" [testPhase]="isTest"></test-phase-feed-back>-->
+  <div class="fullscreenDiv" *ngIf="!instructions">
+    <study-phase *ngIf="testPhase == 1" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions"></study-phase>
+    <test-phase-feed-back *ngIf="testPhase == 2 || testPhase == 3" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions"></test-phase-feed-back>
+    <test-phase-no-feed-back *ngIf="testPhase == 4" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions"></test-phase-no-feed-back>
+  </div>
+
 </div>
-
 </body>
 </html>

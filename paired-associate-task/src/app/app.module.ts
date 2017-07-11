@@ -11,7 +11,7 @@ import {AlertComponent} from "./components/alert.component";
 import {AlertService} from "./services/alert.service";
 import { AuthGuard } from "./gaurds/auth.gaurd"
 import {routing} from "./app.routing";
-import {IntroComponent} from "./components/instructions.component";
+import {InstructionsComponent} from "./components/instructions.component";
 import {WordPairService} from "./services/wordpair.service";
 import {AutofocusDirective} from "./directives/autofocus.directive";
 import {MemoryTaskComponent} from "./components/memorytask/memorytask.component";
@@ -21,7 +21,7 @@ import {TestPhaseFeedbackComponent} from "./components/testphasefeedback.compone
   declarations: [
     AppComponent,
     MemoryTaskComponent,
-    IntroComponent,
+    InstructionsComponent,
     StudyPhaseComponent,
     TestPhaseNoFeedbackComponent,
     TestPhaseFeedbackComponent,

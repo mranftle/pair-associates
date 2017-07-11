@@ -1,7 +1,7 @@
 /**
  * Created by matthewRanftle1 on 3/3/17.
  */
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
 import {Router} from "@angular/router";
@@ -17,6 +17,10 @@ export class StudyPhaseComponent {
   // instructions = "Instructions here";
   @Input() wordPairs: WordPair[];
   @Input() testPhase: number;
+  @Input() instructions: boolean;
+  @Output() instructionsChange = new EventEmitter<boolean>();
+  @Output() testPhaseChange = new EventEmitter<number>();
+
   i: number;
   constructor( private wordPairService: WordPairService,
                private router: Router) {}
@@ -34,6 +38,9 @@ export class StudyPhaseComponent {
         // this.wordPairService.setTestOrTrain(true);
         // this.router.navigate(['/instructions']);
         this.testPhase++;
+        this.instructions = true;
+        this.testPhaseChange.emit(this.testPhase);
+        this.instructionsChange.emit(this.instructions);
 
       }
     }, 1000); // responseTime between words presented in study phase

@@ -4,7 +4,7 @@
  * Testphase Component for the Memory Task
  *
  */
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, EventEmitter, Output} from '@angular/core';
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
 import Timer = NodeJS.Timer;
@@ -12,7 +12,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'test-phase-no-feed-back',
-  templateUrl: '../templates/testphase.component.html',
+  templateUrl: '../templates/testphasenofeedback.component.html',
   styleUrls:['../stylesheets/testphase.component.css'],
   providers: [WordPairService]
 })
@@ -22,6 +22,9 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
   @ViewChild('response') response: any;
   @Input() wordPairs: WordPair[];
   @Input() testPhase: number;
+  @Input() instructions: boolean;
+  @Output() testPhaseChange = new EventEmitter<number>();
+  @Output() instructionsChange = new EventEmitter<boolean>();
   i: number;
   selectedWordPair: WordPair;
   responseTime: number;
@@ -53,6 +56,9 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
         //testing done, route to next component
         // this.router.navigate(['/instructions']);
         this.testPhase++;
+        this.instructions = true;
+        this.testPhaseChange.emit(this.testPhase);
+        this.instructionsChange.emit(this.instructions);
         return;
       }
       this.selectedWordPair = this.wordPairs[this.i];

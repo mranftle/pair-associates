@@ -135,7 +135,7 @@ var TestPhaseNoFeedbackComponent = (function () {
     TestPhaseNoFeedbackComponent = __decorate([
         core_1.Component({
             selector: 'test-phase-no-feed-back',
-            templateUrl: '../templates/testphase.component.html',
+            templateUrl: '../templates/testphasenofeedback.component.html',
             styleUrls: ['../stylesheets/testphase.component.css'],
             providers: [wordpair_service_1.WordPairService]
         })

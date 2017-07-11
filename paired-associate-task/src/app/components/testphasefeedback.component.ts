@@ -1,7 +1,7 @@
 /**
  * Created by matthewRanftle1 on 7/11/17.
  */
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
 import Timer = NodeJS.Timer;
@@ -18,13 +18,14 @@ export class TestPhaseFeedbackComponent implements OnInit {
   // instructions = "Instructions here";
   @ViewChild('response') response: any;
   @Input() wordPairs: WordPair[];
+  @Input() instructions: boolean;
+  @Input() testPhase: number;
+  @Output() instructionsChange = new EventEmitter<boolean>();
+  @Output() testPhaseChange = new EventEmitter<number>();
   i: number;
-  selectedWordPair: WordPair;
   showCorrect: boolean;
   responseTime: number;
   timer: Timer;
-  @Input() testPhase: number;
-  sub: any;
 
   constructor( private wordPairService: WordPairService,
                private router: Router,
@@ -43,7 +44,6 @@ export class TestPhaseFeedbackComponent implements OnInit {
       test_phase: this.testPhase
 
     };
-    console.log(userresponse);
     this.wordPairService.saveUserResponse(userresponse);
     this.showCorrect = true;
 
@@ -56,6 +56,9 @@ export class TestPhaseFeedbackComponent implements OnInit {
         //testing done, route to next component
         clearTimeout(this.timer);
         this.testPhase++;
+        this.instructions = true;
+        this.testPhaseChange.emit(this.testPhase);
+        this.instructionsChange.emit(this.instructions);
         return;
       }
       this.showCorrect = false;
