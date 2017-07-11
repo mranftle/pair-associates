@@ -1,0 +1,7 @@
+<div class="testword">
+  <div> {{showCorrect ?  wordPairs[this.i]?.word1 + '-' + wordPairs[this.i]?.word2 : wordPairs[this.i]?.word1 + '-?????'}}</div>
+</div>
+<div class="submitresponse" *ngIf="!showCorrect">
+    <input autofocus class="textbox"type="text" (keyup.enter)="submitPair()" #response>
+    <!--<button (click)="submitPair()">submit</button>-->
+</div>

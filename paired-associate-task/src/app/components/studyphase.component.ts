@@ -1,7 +1,7 @@
 /**
  * Created by matthewRanftle1 on 3/3/17.
  */
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
 import {Router} from "@angular/router";
@@ -15,29 +15,20 @@ import {Router} from "@angular/router";
 
 export class StudyPhaseComponent {
   // instructions = "Instructions here";
-  wordPairs: WordPair[];
-  selectedWordPair: WordPair;
+  @Input() wordPairs: WordPair[];
+  @Input() testPhase: number;
+  @Input() instructions: boolean;
+  @Output() instructionsChange = new EventEmitter<boolean>();
+  @Output() testPhaseChange = new EventEmitter<number>();
+
   i: number;
   constructor( private wordPairService: WordPairService,
                private router: Router) {}
 
-  getWordPairs(): void {
-    this.wordPairService.getWordPairs().then(
-      (wordPairs) => {
-        this.wordPairs = wordPairs;
-        this.selectedWordPair = this.wordPairs[0];
-        this.i = 0;
-        console.log(this.wordPairs);
-        this.cycleWords();
-      }
-    );
-  }
-
   cycleWords(): void {
     setTimeout(() => {
-      this.selectedWordPair = this.wordPairs[this.i];
       this.i++;
-      if (this.i <= this.wordPairs.length) {
+      if (this.i < this.wordPairs.length) {
         this.cycleWords();
       }
       else {
@@ -45,19 +36,19 @@ export class StudyPhaseComponent {
         // this.cycleWords();
         // set testing = true
         // this.wordPairService.setTestOrTrain(true);
-        this.router.navigate(['/instructions']);
+        // this.router.navigate(['/instructions']);
+        this.testPhase++;
+        this.instructions = true;
+        this.testPhaseChange.emit(this.testPhase);
+        this.instructionsChange.emit(this.instructions);
 
       }
     }, 1000); // responseTime between words presented in study phase
   }
 
   ngOnInit(): void {
-    this.getWordPairs();
-    this.selectedWordPair = {
-      word1: null,
-      word2: null
-    };
-
+    this.i = 0;
+    this.cycleWords();
   }
 
 }

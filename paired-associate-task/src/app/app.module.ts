@@ -5,22 +5,26 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { StudyPhaseComponent } from './components/studyphase.component';
-import {TestPhaseComponent} from "./components/testphase.component";
+import {TestPhaseNoFeedbackComponent} from "./components/testphasenofeedback.component";
 import {LoginComponent} from "./components/login.component"
 import {AlertComponent} from "./components/alert.component";
 import {AlertService} from "./services/alert.service";
 import { AuthGuard } from "./gaurds/auth.gaurd"
 import {routing} from "./app.routing";
-import {IntroComponent} from "./components/instructions.component";
+import {InstructionsComponent} from "./components/instructions.component";
 import {WordPairService} from "./services/wordpair.service";
 import {AutofocusDirective} from "./directives/autofocus.directive";
+import {MemoryTaskComponent} from "./components/memorytask/memorytask.component";
+import {TestPhaseFeedbackComponent} from "./components/testphasefeedback.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    IntroComponent,
+    MemoryTaskComponent,
+    InstructionsComponent,
     StudyPhaseComponent,
-    TestPhaseComponent,
+    TestPhaseNoFeedbackComponent,
+    TestPhaseFeedbackComponent,
     LoginComponent,
     AlertComponent,
     AutofocusDirective

@@ -2,6 +2,7 @@
  * Created by matthewRanftle1 on 3/1/17.
  */
 import { Injectable } from '@angular/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -18,7 +19,7 @@ export class WordPairService {
 
   // get word pairs for study and testing
   getWordPairs() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.wordPairUrl, options)
@@ -29,7 +30,7 @@ export class WordPairService {
 
   // return whether a user is testing or training
   getTestOrTrain() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.isTestUrl, options)
@@ -54,7 +55,7 @@ export class WordPairService {
   // save user response
   saveUserResponse(userresponse:any) {
     let body = JSON.stringify(userresponse);
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     let headers = new Headers({'Authorization': 'JWT '+ currentUser.token,
                                'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers:headers });

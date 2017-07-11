@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<div *ngIf="loaded == true">
+  <!--{{wordPairs}}-->
+  <!--{{jwt}}-->
+  <!--{{userId}}-->
+  <!--{{testPhase}}-->
+  <instructions [testPhase]="testPhase" [(instructions)]="instructions"></instructions>
+
+  <div class="fullscreenDiv" *ngIf="!instructions">
+    <study-phase *ngIf="testPhase == 1" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions"></study-phase>
+    <test-phase-feed-back *ngIf="testPhase == 2 || testPhase == 3" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions"></test-phase-feed-back>
+    <test-phase-no-feed-back *ngIf="testPhase == 4" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions"></test-phase-no-feed-back>
+  </div>
+
+</div>
+</body>
+</html>

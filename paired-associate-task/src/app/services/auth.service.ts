@@ -3,15 +3,14 @@
  */
 import { Injectable } from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  private userUrl = 'https://pairsassociatesapi.servehttp.com/api-token-auth/';
-  private postResponse='';
+  private userUrl = 'https://pairsassociatesapi.servehttp.com/api-token-auth/';  private postResponse='';
   constructor(private http: Http) { }
 
   private extractData(res: Response) {
@@ -30,14 +29,18 @@ export class AuthService {
         let user = response.json();
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          Cookie.set('currentUser', JSON.stringify(user));
         }
       });
   }
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    Cookie.delete('currentUser');
+  }
+
+  getJwt() {
+    return Cookie.get('currentUser');
   }
 
   private handleError(error: any) {

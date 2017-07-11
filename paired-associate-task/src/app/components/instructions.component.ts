@@ -4,7 +4,7 @@
 /**
  * Created by matthewRanftle1 on 4/11/17.
  */
-import { Component, OnInit, ViewChild } from '@angular/core'
+import {Component, ViewChild, Input, Output, EventEmitter} from '@angular/core'
 import { AuthService } from '../services/auth.service'
 import {Router} from "@angular/router";
 import {AlertService} from "../services/alert.service";
@@ -17,61 +17,41 @@ import {WordPairService} from "../services/wordpair.service";
   providers: [AuthService]
 })
 
-export class IntroComponent implements OnInit {
-  isTest=0;
-  cue=false;
-  userId: number;
+export class InstructionsComponent {
+  @Input() testPhase: number;
+  @Input() instructions: boolean;
+  @Output() instructionsChange = new EventEmitter<boolean>();
 
-  constructor(private router: Router,
-              private wordPairService: WordPairService,
-              private alertService: AlertService) {
+  constructor(private router: Router) {
   }
 
-  startStudy(): void {
-    this.cue = true;
-    setTimeout(function(){
-      this.cue = false;
-
-    }, 1000);
-    this.router.navigate(['/study-phase'])
-
+  hideInstructions(): void {
+    this.instructions = false;
+    this.instructionsChange.emit(this.instructions);
   }
-
-  startTest1(): void {
-    this.cue = true;
-    setTimeout(function(){
-      this.cue = false;
-    }, 1000);
-    this.router.navigate(['/test-phase'], {queryParams: {test_phase: this.isTest}});
-  }
-
-  endExperiment(): void {
-    this.cue = true;
-    setTimeout(function(){
-      this.cue = false;
-    }, 1000);
-      this.router.navigate(['/login']);
-  }
-
-  // get test status and user_id
-  ngOnInit(): void {
-    this.wordPairService.getTestOrTrain().then(
-      (userInfo) => {
-        this.userId = userInfo['id'];
-        this.isTest = userInfo['test_phase'];
-
-        // cycle test phases
-        if(this.isTest >= 5){
-          this.wordPairService.setTestOrTrain(this.userId, 1);
-        }
-        else {
-          this.wordPairService.setTestOrTrain(this.userId, this.isTest + 1);
-        }
-      }
-  );
-}
-
-
-
-
+  // startStudy(): void {
+  //   this.cue = true;
+  //   setTimeout(function(){
+  //     this.cue = false;
+  //
+  //   }, 1000);
+  //   this.router.navigate(['/study-phase'])
+  //
+  // }
+  //
+  // startTest1(): void {
+  //   this.cue = true;
+  //   setTimeout(function(){
+  //     this.cue = false;
+  //   }, 1000);
+  //   this.router.navigate(['/test-phase'], {queryParams: {test_phase: this.testPhase}});
+  // }
+  //
+  // endExperiment(): void {
+  //   this.cue = true;
+  //   setTimeout(function(){
+  //     this.cue = false;
+  //   }, 1000);
+  //     this.router.navigate(['/login']);
+  // }
 }

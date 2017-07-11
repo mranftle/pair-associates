@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit{
     this.userService.login(this.username.nativeElement.value, this.password.nativeElement.value)
       .subscribe(
         data => {
-          this.alertService.success('login success')
-          this.router.navigate(['/instructions']);
+          // this.alertService.success('login success')
+          this.router.navigate(['/memory-task']);
         },
         error => {
           this.alertService.error(error)
