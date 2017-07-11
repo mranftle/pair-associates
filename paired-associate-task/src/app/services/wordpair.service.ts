@@ -12,9 +12,9 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  private wordPairUrl = 'http://127.0.0.1:8000/wordpairs';
-  private isTestUrl = 'http://127.0.0.1:8000/istest';
-  private userResponseUrl='http://127.0.0.1:8000/userresponse/';
+  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs';
+  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest';
+  private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
   constructor(private http: Http) { }
 
   // get word pairs for study and testing
@@ -60,10 +60,10 @@ export class WordPairService {
                                'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers:headers });
 
-    // this.http.post(this.userResponseUrl, body, options) // ...using post request
-    //   .map(res => res.json()) // ...and calling .json() on the response to return data
-    //   .catch((error:any) => 'Server error') //...errors if
-    //   .subscribe();
+    this.http.post(this.userResponseUrl, body, options) // ...using post request
+      .map(res => res.json()) // ...and calling .json() on the response to return data
+      .catch((error:any) => 'Server error') //...errors if
+      .subscribe();
   }
 
   //more detailed error message to come, move to error file
