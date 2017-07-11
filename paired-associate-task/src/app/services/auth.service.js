@@ -10,13 +10,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
  */
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var ng2_cookies_1 = require('ng2-cookies/ng2-cookies');
 require('rxjs/add/operator/toPromise');
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/map');
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
-        this.userUrl = 'https://pairsassociatesapi.servehttp.com/api-token-auth/';
+        this.userUrl = 'http://127.0.0.1:8000/api-token-auth/';
         this.postResponse = '';
     }
     AuthService.prototype.extractData = function (res) {
@@ -33,13 +34,16 @@ var AuthService = (function () {
             var user = response.json();
             if (user && user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                ng2_cookies_1.Cookie.set('currentUser', JSON.stringify(user));
             }
         });
     };
     AuthService.prototype.logout = function () {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        ng2_cookies_1.Cookie.delete('currentUser');
+    };
+    AuthService.prototype.getJwt = function () {
+        return ng2_cookies_1.Cookie.get('currentUser');
     };
     AuthService.prototype.handleError = function (error) {
         console.error('An error occurred', error);

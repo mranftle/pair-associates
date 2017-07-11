@@ -5,18 +5,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+/**
+ * Created by matthewRanftle1 on 4/11/17.
+ */
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Paired Associate Task';
+var AlertComponent = (function () {
+    function AlertComponent(alertService) {
+        this.alertService = alertService;
     }
-    AppComponent = __decorate([
+    AlertComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.alertService.getMessage().subscribe(function (message) { _this.message = message; });
+    };
+    AlertComponent = __decorate([
         core_1.Component({
-            selector: 'app-root',
-            templateUrl: 'app.component.html',
-            styleUrls: ['stylesheets/app.component.css'],
+            moduleId: module.id,
+            selector: 'alert',
+            templateUrl: '../templates/alert.component.html'
         })
-    ], AppComponent);
-    return AppComponent;
+    ], AlertComponent);
+    return AlertComponent;
 }());
-exports.AppComponent = AppComponent;
+exports.AlertComponent = AlertComponent;

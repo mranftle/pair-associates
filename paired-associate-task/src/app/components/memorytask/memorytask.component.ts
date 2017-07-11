@@ -6,6 +6,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {WordPairService} from "../../services/wordpair.service";
 import {StudyPhaseComponent} from "../studyphase.component";
+import {TestPhaseNoFeedbackComponent} from "../testphasenofeedback.component";
 /**
  * Created by matthewRanftle1 on 7/6/17.
  */
@@ -20,6 +21,7 @@ import {StudyPhaseComponent} from "../studyphase.component";
 
 export class MemoryTaskComponent implements OnInit {
   @ViewChild(StudyPhaseComponent) studyPhaseComponent: StudyPhaseComponent;
+  @ViewChild(TestPhaseNoFeedbackComponent) testPhaseComponent: TestPhaseNoFeedbackComponent;
   wordPairs: WordPair[];
   jwt: string;
   loaded: boolean;

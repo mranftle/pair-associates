@@ -9,8 +9,10 @@
   {{userId}}
   {{isTest}}
 
-  <study-phase [wordPairs]="wordPairs"></study-phase>
-</div>',
+  <study-phase [wordPairs]="wordPairs" [testPhase]="isTest"></study-phase>
+  <!--<test-phase-no-feed-back [wordPairs]="wordPairs" [testPhase]="isTest"></test-phase-no-feed-back>-->
+  <!--<test-phase-feed-back [wordPairs]="wordPairs" [testPhase]="isTest"></test-phase-feed-back>-->
+</div>
 
 </body>
 </html>

@@ -55,15 +55,15 @@ export class WordPairService {
   // save user response
   saveUserResponse(userresponse:any) {
     let body = JSON.stringify(userresponse);
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     let headers = new Headers({'Authorization': 'JWT '+ currentUser.token,
                                'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers:headers });
 
-    this.http.post(this.userResponseUrl, body, options) // ...using post request
-      .map(res => res.json()) // ...and calling .json() on the response to return data
-      .catch((error:any) => 'Server error') //...errors if
-      .subscribe();
+    // this.http.post(this.userResponseUrl, body, options) // ...using post request
+    //   .map(res => res.json()) // ...and calling .json() on the response to return data
+    //   .catch((error:any) => 'Server error') //...errors if
+    //   .subscribe();
   }
 
   //more detailed error message to come, move to error file

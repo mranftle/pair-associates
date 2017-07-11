@@ -16,6 +16,7 @@ import {Router} from "@angular/router";
 export class StudyPhaseComponent {
   // instructions = "Instructions here";
   @Input() wordPairs: WordPair[];
+  @Input() testPhase: number;
   i: number;
   constructor( private wordPairService: WordPairService,
                private router: Router) {}
@@ -31,7 +32,8 @@ export class StudyPhaseComponent {
         // this.cycleWords();
         // set testing = true
         // this.wordPairService.setTestOrTrain(true);
-        this.router.navigate(['/instructions']);
+        // this.router.navigate(['/instructions']);
+        this.testPhase++;
 
       }
     }, 1000); // responseTime between words presented in study phase

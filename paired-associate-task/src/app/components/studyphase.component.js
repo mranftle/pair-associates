@@ -11,42 +11,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require('@angular/core');
 var wordpair_service_1 = require('../services/wordpair.service');
 var StudyPhaseComponent = (function () {
-    function StudyPhaseComponent(wordPairService) {
+    function StudyPhaseComponent(wordPairService, router) {
         this.wordPairService = wordPairService;
+        this.router = router;
     }
-    StudyPhaseComponent.prototype.getWordPairs = function () {
-        var _this = this;
-        this.wordPairService.getWordPairs().then(function (wordPairs) {
-            _this.wordPairs = wordPairs;
-            _this.selectedWordPair = _this.wordPairs[0];
-            _this.i = 0;
-            _this.cycleWords();
-        });
-    };
     StudyPhaseComponent.prototype.cycleWords = function () {
         var _this = this;
         setTimeout(function () {
-            _this.selectedWordPair = _this.wordPairs[_this.i];
             _this.i++;
             if (_this.i < _this.wordPairs.length) {
                 _this.cycleWords();
             }
             else {
                 _this.i = 0;
+                // this.cycleWords();
+                // set testing = true
+                // this.wordPairService.setTestOrTrain(true);
+                _this.router.navigate(['/instructions']);
             }
         }, 1000); // responseTime between words presented in study phase
     };
     StudyPhaseComponent.prototype.ngOnInit = function () {
-        this.getWordPairs();
-        this.selectedWordPair = {
-            word1: null,
-            word2: null
-        };
+        this.i = 0;
+        this.cycleWords();
     };
+    __decorate([
+        core_1.Input()
+    ], StudyPhaseComponent.prototype, "wordPairs", void 0);
     StudyPhaseComponent = __decorate([
         core_1.Component({
             selector: 'study-phase',
             templateUrl: '../templates/studyphase.component.html',
+            styleUrls: ['../stylesheets/studyphase.component.css'],
             providers: [wordpair_service_1.WordPairService]
         })
     ], StudyPhaseComponent);
