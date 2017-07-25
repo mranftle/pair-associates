@@ -14,7 +14,6 @@ import {Router} from "@angular/router";
 })
 
 export class StudyPhaseComponent {
-  // instructions = "Instructions here";
   @Input() wordPairs: WordPair[];
   @Input() testPhase: number;
   @Input() instructions: boolean;
@@ -22,8 +21,6 @@ export class StudyPhaseComponent {
   @Output() testPhaseChange = new EventEmitter<number>();
 
   i: number;
-  constructor( private wordPairService: WordPairService,
-               private router: Router) {}
 
   cycleWords(): void {
     setTimeout(() => {
@@ -32,11 +29,6 @@ export class StudyPhaseComponent {
         this.cycleWords();
       }
       else {
-        this.i = 0;
-        // this.cycleWords();
-        // set testing = true
-        // this.wordPairService.setTestOrTrain(true);
-        // this.router.navigate(['/instructions']);
         this.testPhase++;
         this.instructions = true;
         this.testPhaseChange.emit(this.testPhase);
