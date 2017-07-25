@@ -1,21 +1,21 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from "@angular/core";
-import {WordPair} from "../../entities/wordpair";
-import {User} from "../../entities/user";
-import {AlertService} from "../../services/alert.service";
-import {AuthService} from "../../services/auth.service";
+import {WordPair} from "../entities/wordpair";
+import {User} from "../entities/user";
+import {AlertService} from "../services/alert.service";
+import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
-import {WordPairService} from "../../services/wordpair.service";
-import {StudyPhaseComponent} from "../studyphase.component";
-import {TestPhaseNoFeedbackComponent} from "../testphasenofeedback.component";
-import {InstructionsComponent} from "../instructions.component";
+import {WordPairService} from "../services/wordpair.service";
+import {StudyPhaseComponent} from "./studyphase.component";
+import {TestPhaseNoFeedbackComponent} from "./testphasenofeedback.component";
+import {InstructionsComponent} from "./instructions.component";
 /**
  * Created by matthewRanftle1 on 7/6/17.
  */
 
 @Component({
   selector: 'memory-task',
-  templateUrl: '../../templates/memorytask.component.html',
-  styleUrls: ['../../stylesheets/memorytask.component.css'],
+  templateUrl: '../templates/memorytask.component.html',
+  styleUrls: ['../stylesheets/memorytask.component.css'],
   providers: [AuthService,
     WordPairService]
 

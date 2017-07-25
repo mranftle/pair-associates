@@ -1,12 +1,12 @@
 <!--{{testPhase}}-->
 <div *ngIf="testPhase==1" style="text-align:center">
   <p>
-    you will now be given a memory test. We will initially present you with pairs of words (e.g. chair-wall) for 4 seconds each. We world first like you to study these word pairs, such that you can come up with the second word 'wall' when presented the first word 'chair'.
+    You will now be given a memory test. We will initially present you with pairs of words (e.g. chair-wall) for 4 seconds each. We world first like you to study these word pairs, such that you can come up with the second word 'wall' when presented the first word 'chair'.
     After the study period you will be given two test cycles in which we will give you the first word 'chair' --??? and you will be asked to type in the second word 'wall'.
     You will have about 8 seconds to respond and then will given the correct paired item for 4 seconds.
-
+    <br><br>
     After you go through the second testing cycle, we want you to relax and go through your normal sleep routine.
-
+    <br><br>
     In the morning after you are awake, we would like you to log in again.
   </p>
 </div>
@@ -34,5 +34,5 @@
   </p>
 </div>
 
-<button (click)="hideInstructions()">submit</button>
+<button class="button" (click)="hideInstructions()">Begin</button>
 

@@ -13,15 +13,6 @@
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
-.fullscreenDiv {
-  background-color: #ffffff;
-  width: 100%;
-  height: auto;
-  bottom: 0px;
-  top: 0px;
-  left: 0;
-  position: absolute;
-}
 
 .textbox {
    border: 1px solid #848484;

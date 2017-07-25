@@ -13,7 +13,7 @@ import {WordPairService} from "../services/wordpair.service";
 @Component({
   selector:'instructions',
   templateUrl: '../templates/instructions.component.html',
-  styleUrls: ['../stylesheets/studyphase.component.css'],
+  styleUrls: ['../stylesheets/instructions.component.css'],
   providers: [AuthService]
 })
 
