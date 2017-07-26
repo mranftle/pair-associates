@@ -42,7 +42,7 @@ export class WordPairService {
   // set whether a user is testing or training
   setTestOrTrain(user_id:number, is_test: number) {
     let body = JSON.stringify({test_phase:is_test});
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(Cookie.get('currentUser'));
     let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
     let options = new RequestOptions({ headers:headers });
     let url = this.isTestUrl + '/' + user_id + '/set_is_test/';

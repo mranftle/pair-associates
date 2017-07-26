@@ -7,7 +7,7 @@ import {TestPhaseNoFeedbackComponent} from "./components/testphasenofeedback.com
 import {StudyPhaseComponent} from "./components/studyphase.component";
 import {AuthGuard} from "./gaurds/auth.gaurd";
 import {InstructionsComponent} from "./components/instructions.component";
-import {MemoryTaskComponent} from "./components/memorytask/memorytask.component";
+import {MemoryTaskComponent} from "./components/memorytask.component";
 
 
 const appRoutes: Routes = [

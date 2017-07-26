@@ -14,7 +14,7 @@ import {routing} from "./app.routing";
 import {InstructionsComponent} from "./components/instructions.component";
 import {WordPairService} from "./services/wordpair.service";
 import {AutofocusDirective} from "./directives/autofocus.directive";
-import {MemoryTaskComponent} from "./components/memorytask/memorytask.component";
+import {MemoryTaskComponent} from "./components/memorytask.component";
 import {TestPhaseFeedbackComponent} from "./components/testphasefeedback.component";
 
 @NgModule({

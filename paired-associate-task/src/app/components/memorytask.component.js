@@ -6,10 +6,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var auth_service_1 = require("../../services/auth.service");
-var wordpair_service_1 = require("../../services/wordpair.service");
-var studyphase_component_1 = require("../studyphase.component");
-var testphasenofeedback_component_1 = require("../testphasenofeedback.component");
+var auth_service_1 = require("../services/auth.service.ts");
+var wordpair_service_1 = require("../services/wordpair.service.ts");
+var studyphase_component_1 = require("studyphase.component.ts");
+var testphasenofeedback_component_1 = require("testphasenofeedback.component.ts");
 /**
  * Created by matthewRanftle1 on 7/6/17.
  */
@@ -40,7 +40,7 @@ var MemoryTaskComponent = (function () {
     MemoryTaskComponent = __decorate([
         core_1.Component({
             selector: 'memory-task',
-            templateUrl: '../../templates/memorytask.component.html',
+            templateUrl: '../templates/memorytask.component.html',
             providers: [auth_service_1.AuthService,
                 wordpair_service_1.WordPairService]
         })

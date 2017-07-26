@@ -1,38 +1,46 @@
-<!--{{testPhase}}-->
-<div *ngIf="testPhase==1" style="text-align:center">
-  <p>
-    you will now be given a memory test. We will initially present you with pairs of words (e.g. chair-wall) for 4 seconds each. We world first like you to study these word pairs, such that you can come up with the second word 'wall' when presented the first word 'chair'.
+<div class="instructions">
+
+  <!-- pre study instructions -->
+  <div *ngIf="testPhase==1">
+    You will now be given a memory test. We will initially present you with pairs of words (e.g. chair-wall) for 4 seconds each. We world first like you to study these word pairs, such that you can come up with the second word 'wall' when presented the first word 'chair'.
     After the study period you will be given two test cycles in which we will give you the first word 'chair' --??? and you will be asked to type in the second word 'wall'.
     You will have about 8 seconds to respond and then will given the correct paired item for 4 seconds.
-
+    <br>
     After you go through the second testing cycle, we want you to relax and go through your normal sleep routine.
-
+    <br>
     In the morning after you are awake, we would like you to log in again.
-  </p>
-</div>
+  </div>
 
-
-<div *ngIf="testPhase==2 || testPhase==3" style="text-align:center">
-  <p>
+  <!-- testing with feedback instructions -->
+  <div *ngIf="testPhase==2 || testPhase==3">
     You will now begin testing with feedback. You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
-  </p>
-</div>
+  </div>
 
-<div *ngIf="testPhase==4" style="text-align:center">
-  <p>
+  <!-- Pre-sleep debriefing -->
+  <div *ngIf="testPhase==4">
+    You are now done testing. We would now like you to relax and go through your normal sleep routine. In the morning we would like you to log in one more time and complete the final testing task. Please click below to logout.
+  </div>
+  <!-- testing with no feedback -->
+  <div *ngIf="testPhase==5">
     Good Morning! We will now give you one final test of the word pairs you studied last night. There will be no feedback associated with this test.
     You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
-  </p>
-</div>
+  </div>
 
-<div *ngIf="testPhase==5" style="text-align:center">
-  <p>
+  <!-- pair associate task complete, debrief instructions -->
+  <div *ngIf="testPhase==6" >
     Thank you for participating in this memory task.
     We are interested in the relationship between characteristics of your sleep pattern/quality and memory performance.
     There has been accumulating evidence that deep stages of sleep are related to better memory performance.
+  </div>
 
-  </p>
+  <!--begin task button -->
+  <div class="beginTaskButton" *ngIf="testPhase!=4 && testPhase !=6">
+    <button (click)="hideInstructions()">Begin Task</button>
+  </div>
+
+  <!-- logout button -->
+  <div class="beginTaskButton" *ngIf="testPhase ==4 || testPhase==6">
+    <button (click)="logout()">Logout</button>
+  </div>
+
 </div>
-
-<button (click)="hideInstructions()">submit</button>
-

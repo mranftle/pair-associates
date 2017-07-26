@@ -5,7 +5,6 @@ import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angula
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
 import Timer = NodeJS.Timer;
-import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'test-phase-feed-back',
@@ -15,7 +14,6 @@ import {Router, ActivatedRoute} from "@angular/router";
 })
 
 export class TestPhaseFeedbackComponent implements OnInit {
-  // instructions = "Instructions here";
   @ViewChild('response') response: any;
   @Input() wordPairs: WordPair[];
   @Input() instructions: boolean;
@@ -27,14 +25,12 @@ export class TestPhaseFeedbackComponent implements OnInit {
   responseTime: number;
   timer: Timer;
 
-  constructor( private wordPairService: WordPairService,
-               private router: Router,
-               private route: ActivatedRoute) {}
+  constructor( private wordPairService: WordPairService) {}
 
   submitPair(): void {
     var elipsedTime = Date.now() - this.responseTime;
     var ur = this.response.nativeElement.value || null;
-    this.response.nativeElement.value = null;
+    // this.response.nativeElement.value = null;
     var userresponse = {
       word1: this.wordPairs[this.i].word1,
       word2: this.wordPairs[this.i].word2,
@@ -44,6 +40,7 @@ export class TestPhaseFeedbackComponent implements OnInit {
       test_phase: this.testPhase
 
     };
+
     this.wordPairService.saveUserResponse(userresponse);
     this.showCorrect = true;
 
