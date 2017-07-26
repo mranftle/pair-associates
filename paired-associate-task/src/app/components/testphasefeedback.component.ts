@@ -30,7 +30,7 @@ export class TestPhaseFeedbackComponent implements OnInit {
   submitPair(): void {
     var elipsedTime = Date.now() - this.responseTime;
     var ur = this.response.nativeElement.value || null;
-    this.response.nativeElement.value = null;
+    // this.response.nativeElement.value = null;
     var userresponse = {
       word1: this.wordPairs[this.i].word1,
       word2: this.wordPairs[this.i].word2,
@@ -40,6 +40,7 @@ export class TestPhaseFeedbackComponent implements OnInit {
       test_phase: this.testPhase
 
     };
+
     this.wordPairService.saveUserResponse(userresponse);
     this.showCorrect = true;
 

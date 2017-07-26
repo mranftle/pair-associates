@@ -36,6 +36,12 @@ export class MemoryTaskComponent implements OnInit {
               private wordPairService: WordPairService) {
   }
 
+  updateTestPhase() {
+    console.log("updateTestPhase",this.testPhase);
+    this.wordPairService.setTestOrTrain(this.userId, this.testPhase);
+    // if()
+  }
+
   ngOnInit() {
       this.loaded = false;
       this.jwt = this.userService.getJwt();

@@ -16,20 +16,31 @@
     You will now begin testing with feedback. You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
   </div>
 
-  <!-- testing with no feedback -->
+  <!-- Pre-sleep debriefing -->
   <div *ngIf="testPhase==4">
+    You are now done testing. We would now like you to relax and go through your normal sleep routine. In the morning we would like you to log in one more time and complete the final testing task. Please click below to logout.
+  </div>
+  <!-- testing with no feedback -->
+  <div *ngIf="testPhase==5">
     Good Morning! We will now give you one final test of the word pairs you studied last night. There will be no feedback associated with this test.
     You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
   </div>
 
   <!-- pair associate task complete, debrief instructions -->
-  <div *ngIf="testPhase==5" >
+  <div *ngIf="testPhase==6" >
     Thank you for participating in this memory task.
     We are interested in the relationship between characteristics of your sleep pattern/quality and memory performance.
     There has been accumulating evidence that deep stages of sleep are related to better memory performance.
   </div>
+
   <!--begin task button -->
-  <div class="beginTaskButton">
-    <button (click)="hideInstructions()">Begin</button>
+  <div class="beginTaskButton" *ngIf="testPhase!=4 && testPhase !=6">
+    <button (click)="hideInstructions()">Begin Task</button>
   </div>
+
+  <!-- logout button -->
+  <div class="beginTaskButton" *ngIf="testPhase ==4 || testPhase==6">
+    <button (click)="logout()">Logout</button>
+  </div>
+
 </div>
