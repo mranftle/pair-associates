@@ -8,7 +8,6 @@ import {Component, OnInit, ViewChild, Input, EventEmitter, Output} from '@angula
 import { WordPair } from '../entities/wordpair';
 import { WordPairService } from '../services/wordpair.service';
 import Timer = NodeJS.Timer;
-import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'test-phase-no-feed-back',
@@ -18,7 +17,6 @@ import {Router, ActivatedRoute} from "@angular/router";
 })
 
 export class TestPhaseNoFeedbackComponent implements OnInit {
-  // instructions = "Instructions here";
   @ViewChild('response') response: any;
   @Input() wordPairs: WordPair[];
   @Input() testPhase: number;
@@ -30,9 +28,7 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
   responseTime: number;
   timer: Timer;
 
-  constructor( private wordPairService: WordPairService,
-               private router: Router,
-               private route: ActivatedRoute) {}
+  constructor( private wordPairService: WordPairService) {}
 
   submitPair(): void {
     var elipsedTime = Date.now() - this.responseTime;
@@ -47,14 +43,13 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
       test_phase: this.testPhase
 
     };
-    console.log(userresponse);
+
     this.wordPairService.saveUserResponse(userresponse);
       if (this.i < this.wordPairs.length -1 ) {
           this.i++;
       } else {
 
-        //testing done, route to next component
-        // this.router.navigate(['/instructions']);
+        //testing done, exit component
         this.testPhase++;
         this.instructions = true;
         this.testPhaseChange.emit(this.testPhase);
