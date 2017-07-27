@@ -27,6 +27,8 @@ export class StudyPhaseComponent {
     setTimeout(() => {
       this.i++;
       if (this.i < this.wordPairs.length) {
+
+        //show cue, after 500ms show cycle words
         this.cue= true;
         setTimeout(() => {
           this.cue = false;
@@ -34,6 +36,8 @@ export class StudyPhaseComponent {
         }, 500);
       }
       else {
+
+        //study done route to next component
         this.testPhase++;
         this.instructions = true;
         this.testPhaseChange.emit(this.testPhase);

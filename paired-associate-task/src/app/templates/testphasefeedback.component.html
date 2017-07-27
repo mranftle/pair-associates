@@ -1,6 +1,8 @@
 <div class="testword">
-  <div> {{showCorrect ?  wordPairs[this.i]?.word1 + '-' + wordPairs[this.i]?.word2 : wordPairs[this.i]?.word1 + '-?????'}}</div>
+  <span *ngIf="cue==false"> {{showCorrect ?  wordPairs[this.i]?.word1 + '-' + wordPairs[this.i]?.word2 : wordPairs[this.i]?.word1 + '-?????'}}</span>
+  <span *ngIf="cue==true" class="glyphicon glyphicon-plus"></span>
 </div>
-<div class="submitresponse" *ngIf="!showCorrect">
+
+<div class="submitresponse" *ngIf="!showCorrect && cue==false">
     <input autofocus class="textbox"type="text" (keyup.enter)="submitPair()" #response>
 </div>
