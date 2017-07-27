@@ -19,6 +19,7 @@ export class StudyPhaseComponent {
   @Input() instructions: boolean;
   @Output() instructionsChange = new EventEmitter<boolean>();
   @Output() testPhaseChange = new EventEmitter<number>();
+  cue: boolean;
 
   i: number;
 
@@ -26,20 +27,32 @@ export class StudyPhaseComponent {
     setTimeout(() => {
       this.i++;
       if (this.i < this.wordPairs.length) {
-        this.cycleWords();
+
+        //show cue, after 500ms show cycle words
+        this.cue= true;
+        setTimeout(() => {
+          this.cue = false;
+          this.cycleWords();
+        }, 500);
       }
       else {
+
+        //study done route to next component
         this.testPhase++;
         this.instructions = true;
         this.testPhaseChange.emit(this.testPhase);
         this.instructionsChange.emit(this.instructions);
 
       }
-    }, 1000); // responseTime between words presented in study phase
+    }, 2000); // responseTime between words presented in study phase
   }
 
   ngOnInit(): void {
+    this.cue = true;
     this.i = 0;
+    setTimeout(()=>{
+      this.cue = false;
+    }, 500);
     this.cycleWords();
   }
 

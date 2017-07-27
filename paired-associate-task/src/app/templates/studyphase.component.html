@@ -1,3 +1,8 @@
 <!--<div >class="fullscreenDiv">-->
-  <div class="studyword"> {{wordPairs[i]?.word1 + '-' + wordPairs[i]?.word2}}</div>
+<div class="studyword" xmlns="http://www.w3.org/1999/html">
+    <span *ngIf="cue==false"> {{wordPairs[i]?.word1 + '-' + wordPairs[i]?.word2}}</span>
+    <span *ngIf="cue==true" class="glyphicon glyphicon-plus"></span>
+
+</div>
+
 <!--</div>-->
