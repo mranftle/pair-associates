@@ -53,7 +53,7 @@ export class TestPhaseFeedbackComponent implements OnInit {
 
         //testing done, route to next component
         clearTimeout(this.timer);
-        // this.testPhase++;
+        this.testPhase++;
         this.instructions = true;
         this.testPhaseChange.emit(this.testPhase);
         this.instructionsChange.emit(this.instructions);
@@ -79,6 +79,8 @@ export class TestPhaseFeedbackComponent implements OnInit {
     this.cue = true;
     this.i = 0;
     this.responseTime = Date.now();
+
+    //cue 500ms
     setTimeout(()=>{
       this.cue = false;
     }, 500);

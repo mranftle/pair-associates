@@ -23,6 +23,7 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
   @Input() instructions: boolean;
   @Output() testPhaseChange = new EventEmitter<number>();
   @Output() instructionsChange = new EventEmitter<boolean>();
+  cue:boolean;
   i: number;
   selectedWordPair: WordPair;
   responseTime: number;
@@ -61,14 +62,24 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
   }
 
   resetTimer() : void {
+    this.cue = true;
+    setTimeout(()=>{
+      this.cue = false;
+    }, 500);
     clearTimeout(this.timer);
     this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
     this.responseTime = Date.now();
   }
 
   ngOnInit(): void {
+    this.cue=true;
     this.i = 0;
     this.responseTime = Date.now();
+
+    //cue 500ms
+    setTimeout(()=>{
+      this.cue = false;
+    }, 500);
     this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
   }
 }
