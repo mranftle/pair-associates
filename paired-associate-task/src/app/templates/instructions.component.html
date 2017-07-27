@@ -1,46 +1,71 @@
 <div class="instructions">
 
-  <!-- pre study instructions -->
-  <div *ngIf="testPhase==1">
-    You will now be given a memory test. We will initially present you with pairs of words (e.g. chair-wall) for 4 seconds each. We world first like you to study these word pairs, such that you can come up with the second word 'wall' when presented the first word 'chair'.
-    After the study period you will be given two test cycles in which we will give you the first word 'chair' --??? and you will be asked to type in the second word 'wall'.
-    You will have about 8 seconds to respond and then will given the correct paired item for 4 seconds.
-    <br>
-    After you go through the second testing cycle, we want you to relax and go through your normal sleep routine.
-    <br>
-    In the morning after you are awake, we would like you to log in again.
+  <!-- intro -->
+  <div class="inst"*ngIf="testPhase==1">
+    You will now begin the memory experiment. We will first present you with pairs of words (e.g. chair-wall) for 4 seconds each. Please study these word pairs, such that you can recall the second word ('wall') when presented the first word ('chair').
+
+    After the study period, you will be given two test cycles with the same list of words. During each test cycle you will be given the first word ('chair' -- ????) and you will be asked to type in the second word ('wall'). You will have about 5 seconds to respond. After this period, you will given the correct answer for 4 seconds for feedback and restudy purposes.
+
+    After you go through the second testing cycle, we want you to relax and go through your normal sleep routine. In the morning after you awake please log in again for the completion of this study.
+
+    Thank you again for your participation in this study.
+
+    Please click below to continue.
   </div>
 
-  <!-- testing with feedback instructions -->
-  <div *ngIf="testPhase==2 || testPhase==3">
-    You will now begin testing with feedback. You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
+  <!-- study phase -->
+  <div class="inst" *ngIf="testPhase==2">
+    You will now begin the study period. Please click below to begin.
+  </div>
+
+  <!-- testing with feedback part 1  -->
+  <div class="inst" *ngIf="testPhase==3">
+    You have now finished the study period and will begin the first cycle of memory testing and feedback. Remember, you will be presented with the first word and your task will be to type in the second word.. Please type your response in the textbox and press ‘Return’ to submit. You will have 5 seconds to recall the paired word. After the recall period you will be presented with the correct wordpair. Please use this time to restudy the wordpair. Please click below to continue.
+  </div>
+
+  <!-- testing with feeback part 2 -->
+  <div class="inst" *ngIf="testPhase==4">
+    Thanks, you have now completed the first round of testing. We will now do this testing cycle one more time with the same items. Please be sure to use the feedback if you are unable to recall the paired word.
   </div>
 
   <!-- Pre-sleep debriefing -->
-  <div *ngIf="testPhase==4">
-    You are now done testing. We would now like you to relax and go through your normal sleep routine. In the morning we would like you to log in one more time and complete the final testing task. Please click below to logout.
+  <div class="inst" *ngIf="testPhase==5">
+    You are now done with the first part of the experiment. Please relax and go through your normal sleep routine.
+
+    In the morning please log in one more time, soon after you wake up, and complete the study. This should only take 5-10 minutes. Thank you for participating. Have a good night! Please click below to logout
   </div>
+
   <!-- testing with no feedback -->
-  <div *ngIf="testPhase==5">
-    Good Morning! We will now give you one final test of the word pairs you studied last night. There will be no feedback associated with this test.
-    You will be given 5 seconds to enter a response and press 'Enter'. Please click below to begin.
+  <div class="inst" *ngIf="testPhase==6">
+    Good Morning! We will now give you one final test of the word pairs you studied last night. There will be no feedback associated with this test. You will be given 10 seconds to enter a response and press 'Return’. Please try your best
+  </div>
+
+  <!-- debrief questions -->
+  <div class="inst" *ngIf="testPhase==7">
+    QUESTIONS HERE
   </div>
 
   <!-- pair associate task complete, debrief instructions -->
-  <div *ngIf="testPhase==6" >
+  <div class="inst" *ngIf="testPhase==8" >
     Thank you for participating in this memory task.
     We are interested in the relationship between characteristics of your sleep pattern/quality and memory performance.
     There has been accumulating evidence that deep stages of sleep are related to better memory performance.
   </div>
 
+  <!-- next instruction button -->
+  <div class="beginTaskButton" *ngIf="testPhase == 1 || testPhase==7">
+    <button (click)="nextInstruction()">Continue</button>
+  </div>
+
   <!--begin task button -->
-  <div class="beginTaskButton" *ngIf="testPhase!=4 && testPhase !=6">
-    <button (click)="hideInstructions()">Begin Task</button>
+  <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+    <button (click)="toggleInstructions()">Begin Task</button>
   </div>
 
   <!-- logout button -->
-  <div class="beginTaskButton" *ngIf="testPhase ==4 || testPhase==6">
+  <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
     <button (click)="logout()">Logout</button>
   </div>
+
 
 </div>

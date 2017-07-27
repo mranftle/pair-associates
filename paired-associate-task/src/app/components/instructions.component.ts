@@ -22,18 +22,23 @@ export class InstructionsComponent {
   constructor(private router:Router){}
 
   logout() : void {
-    if(this.testPhase < 6) {
+    if(this.testPhase < 8) {
       this.testPhase++;
     }
     else {
       this.testPhase=1;
     }
     this.testPhaseChange.emit(this.testPhase);
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
   }
 
-  hideInstructions(): void {
+  toggleInstructions(): void {
     this.instructions = false;
     this.instructionsChange.emit(this.instructions);
+  }
+
+  nextInstruction(): void {
+    this.testPhase++;
+    this.testPhaseChange.emit(this.testPhase);
   }
 }
