@@ -1,10 +1,14 @@
 .instructions {
-   position: relative;
-   text-align: center;
- }
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+
+}
 
 .inst {
-  font-family: "Times New Roman";
+  font-family: "Calibri";
   font-size:20px;
 }
 .beginTaskButton {
