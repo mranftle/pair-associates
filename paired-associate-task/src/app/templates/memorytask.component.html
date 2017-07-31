@@ -3,14 +3,14 @@
 <head>
 </head>
 <body>
-<div *ngIf="loaded == true">
+<div class="fullscreenDiv" *ngIf="loaded == true">
   <!--{{wordPairs}}-->
   <!--{{jwt}}-->
   <!--{{userId}}-->
   <!--{{testPhase}}-->
-  <instructions [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>
+  <instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>
 
-  <div class="fullscreenDiv" *ngIf="!instructions">
+  <div *ngIf="!instructions">
     <study-phase *ngIf="testPhase == 2" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></study-phase>
     <test-phase-feed-back *ngIf="testPhase == 3 || testPhase == 4" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></test-phase-feed-back>
     <test-phase-no-feed-back *ngIf="testPhase == 6" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></test-phase-no-feed-back>
