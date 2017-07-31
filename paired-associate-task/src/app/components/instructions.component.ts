@@ -29,7 +29,8 @@ export class InstructionsComponent {
       this.testPhase=1;
     }
     this.testPhaseChange.emit(this.testPhase);
-    // this.router.navigate(['/login']);
+
+    this.router.navigate(['/login']);
   }
 
   toggleInstructions(): void {
