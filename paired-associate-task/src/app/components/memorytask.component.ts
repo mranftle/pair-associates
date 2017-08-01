@@ -37,7 +37,7 @@ export class MemoryTaskComponent implements OnInit {
   }
 
   updateTestPhase() {
-    console.log("updateTestPhase",this.testPhase);
+    this.shuffleWordPairs();
     this.wordPairService.setTestOrTrain(this.userId, this.testPhase);
     // if()
   }
@@ -48,7 +48,8 @@ export class MemoryTaskComponent implements OnInit {
       console.log(localStorage.getItem('currentUser'));
       this.wordPairService.getWordPairs().then(
         (wordPairs) => {
-          this.wordPairs = wordPairs;
+          // this.wordPairs = wordPairs.slice(0,5);
+          this.shuffleWordPairs();
           this.wordPairService.getTestOrTrain().then(
             (userInfo) => {
               console.log(userInfo);
@@ -60,5 +61,19 @@ export class MemoryTaskComponent implements OnInit {
           );
         }
       );
+  }
+
+  //F isher-Yates shuffle
+  shuffleWordPairs() {
+    var i = 0
+      , j = 0
+      , temp = null
+
+    for (i = this.wordPairs.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = this.wordPairs[i];
+      this.wordPairs[i] = this.wordPairs[j];
+      this.wordPairs[j] = temp;
+    }
   }
 }

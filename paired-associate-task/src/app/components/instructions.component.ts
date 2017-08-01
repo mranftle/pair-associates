@@ -30,7 +30,7 @@ export class InstructionsComponent {
     }
     this.testPhaseChange.emit(this.testPhase);
 
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
   }
 
   toggleInstructions(): void {
