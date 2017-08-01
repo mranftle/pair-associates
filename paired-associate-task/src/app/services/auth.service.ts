@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  private userUrl = 'https://pairsassociatesapi.servehttp.com/api-token-auth/';
+  private userUrl = 'http://localhost:8000/api-token-auth/';
   private postResponse='';
   constructor(private http: Http) { }
 
@@ -30,18 +30,19 @@ export class AuthService {
         let user = response.json();
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          Cookie.set('currentUser', JSON.stringify(user));
+          // console.log(user.token);
+          localStorage.setItem('currentUser', 'JWT '.concat(user.token));
         }
       });
   }
 
   logout() {
     // remove user from local storage to log user out
-    Cookie.delete('currentUser');
+    localStorage.removeItem('currentUser');
   }
 
   getJwt() {
-    return Cookie.get('currentUser');
+    return localStorage.getItem('currentUser');
   }
 
   private handleError(error: any) {
