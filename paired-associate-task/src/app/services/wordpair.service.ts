@@ -12,15 +12,15 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs';
-  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest';
+  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
+  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
   private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
   constructor(private http: Http) { }
 
   // get word pairs for study and testing
   getWordPairs() {
-    let currentUser = JSON.parse(Cookie.get('currentUser'));
-    let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({ 'Authorization': currentUser});
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.wordPairUrl, options)
       .toPromise()
@@ -30,8 +30,9 @@ export class WordPairService {
 
   // return whether a user is testing or training
   getTestOrTrain() {
-    let currentUser = JSON.parse(Cookie.get('currentUser'));
-    let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({ 'Authorization': currentUser,
+                                'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.isTestUrl, options)
       .toPromise()
@@ -42,8 +43,8 @@ export class WordPairService {
   // set whether a user is testing or training
   setTestOrTrain(user_id:number, is_test: number) {
     let body = JSON.stringify({test_phase:is_test});
-    let currentUser = JSON.parse(Cookie.get('currentUser'));
-    let headers = new Headers({ 'Authorization': 'JWT '+ currentUser.token});
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({ 'Authorization': currentUser});
     let options = new RequestOptions({ headers:headers });
     let url = this.isTestUrl + '/' + user_id + '/set_is_test/';
     this.http.post(url,body,options) // ...using post request
@@ -55,8 +56,8 @@ export class WordPairService {
   // save user response
   saveUserResponse(userresponse:any) {
     let body = JSON.stringify(userresponse);
-    let currentUser = JSON.parse(Cookie.get('currentUser'));
-    let headers = new Headers({'Authorization': 'JWT '+ currentUser.token,
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({'Authorization': currentUser,
                                'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers:headers });
 
