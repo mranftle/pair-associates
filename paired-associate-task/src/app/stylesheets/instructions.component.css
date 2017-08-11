@@ -1,5 +1,5 @@
 .instructions {
-  position: fixed; /* or absolute */
+  position: absolute; /* or absolute */
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
@@ -8,6 +8,8 @@
 }
 
 .inst {
+  overflow-y: scroll;
+  height:400px;
   font-family: "Calibri";
   font-size:20px;
 }

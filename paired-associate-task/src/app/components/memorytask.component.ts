@@ -39,7 +39,6 @@ export class MemoryTaskComponent implements OnInit {
   updateTestPhase() {
     this.shuffleWordPairs();
     this.wordPairService.setTestOrTrain(this.userId, this.testPhase);
-    // if()
   }
 
   ngOnInit() {
@@ -48,7 +47,7 @@ export class MemoryTaskComponent implements OnInit {
       console.log(localStorage.getItem('currentUser'));
       this.wordPairService.getWordPairs().then(
         (wordPairs) => {
-          // this.wordPairs = wordPairs.slice(0,5);
+          this.wordPairs = wordPairs;
           this.shuffleWordPairs();
           this.wordPairService.getTestOrTrain().then(
             (userInfo) => {
@@ -63,11 +62,11 @@ export class MemoryTaskComponent implements OnInit {
       );
   }
 
-  //F isher-Yates shuffle
+  //Fisher-Yates shuffle
   shuffleWordPairs() {
     var i = 0
       , j = 0
-      , temp = null
+      , temp = null;
 
     for (i = this.wordPairs.length - 1; i > 0; i -= 1) {
       j = Math.floor(Math.random() * (i + 1));
