@@ -7,7 +7,7 @@
   <!--{{wordPairs}}-->
   <!--{{jwt}}-->
   <!--{{userId}}-->
-  <!--{{testPhase}}-->
+  {{testPhase}}
   <instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>
 
   <div *ngIf="!instructions">
@@ -15,6 +15,8 @@
     <test-phase-feed-back *ngIf="testPhase == 3 || testPhase == 4" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></test-phase-feed-back>
     <test-phase-no-feed-back *ngIf="testPhase == 6" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></test-phase-no-feed-back>
   </div>
+
+  <questions *ngIf="testPhase==7" [(testPhase)]="testPhase"></questions>
 
 </div>
 </body>

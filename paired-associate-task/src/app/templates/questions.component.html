@@ -1,0 +1,40 @@
+<div class="instructions">
+
+  <!-- questions brief -->
+  <div class="inst" *ngIf="questionNum==1">
+    <p>
+      Thank you! You are now down testing. Please answer the following questions.
+    </p>
+
+  </div>
+  <!--question 1 -->
+  <div class="inst" *ngIf="questionNum==2">
+    <p>
+      question1
+    </p>
+  </div>
+
+  <!--question 2 -->
+  <div class="inst" *ngIf="questionNum==3">
+    <p>
+      question2
+    </p>
+  </div>
+
+  <!--question 3 -->
+  <div class="inst" *ngIf="questionNum==4">
+    <p>
+      question3
+    </p>
+  </div>
+
+  <textarea class="span6" rows="3" placeholder="type response here" required #response></textarea>
+
+
+  <!-- next question button -->
+  <div class="beginTaskButton">
+    <button (click)="nextQuestion()">Next</button>
+  </div>
+
+</div>
+

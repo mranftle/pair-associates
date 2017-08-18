@@ -58,13 +58,6 @@
     </p>
   </div>
 
-  <!-- debrief questions -->
-  <div class="inst" *ngIf="testPhase==7">
-    <p>
-    QUESTIONS HERE
-    </p>
-  </div>
-
   <!-- pair associate task complete, debrief instructions -->
   <div class="inst" *ngIf="testPhase==8" >
     <p>
@@ -77,7 +70,7 @@
   </div>
 
   <!-- next instruction button -->
-  <div class="beginTaskButton" *ngIf="testPhase == 1 || testPhase==7">
+  <div class="beginTaskButton" *ngIf="testPhase == 1">
     <button (click)="nextInstruction()">Continue</button>
   </div>
 
@@ -90,6 +83,5 @@
   <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
     <button (click)="logout()">Logout</button>
   </div>
-
 
 </div>

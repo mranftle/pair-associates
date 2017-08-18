@@ -17,6 +17,7 @@ import {AutofocusDirective} from "./directives/autofocus.directive";
 import {MemoryTaskComponent} from "./components/memorytask.component";
 import {TestPhaseFeedbackComponent} from "./components/testphasefeedback.component";
 import {GoodByeComponent} from "./components/goodbye.component";
+import {QuestionsComponent} from "./components/questions.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {GoodByeComponent} from "./components/goodbye.component";
     StudyPhaseComponent,
     TestPhaseNoFeedbackComponent,
     TestPhaseFeedbackComponent,
+    QuestionsComponent,
     GoodByeComponent,
     LoginComponent,
     AlertComponent,
