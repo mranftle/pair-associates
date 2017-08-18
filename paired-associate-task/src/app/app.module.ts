@@ -16,6 +16,7 @@ import {WordPairService} from "./services/wordpair.service";
 import {AutofocusDirective} from "./directives/autofocus.directive";
 import {MemoryTaskComponent} from "./components/memorytask.component";
 import {TestPhaseFeedbackComponent} from "./components/testphasefeedback.component";
+import {GoodByeComponent} from "./components/goodbye.component";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {TestPhaseFeedbackComponent} from "./components/testphasefeedback.compone
     StudyPhaseComponent,
     TestPhaseNoFeedbackComponent,
     TestPhaseFeedbackComponent,
+    GoodByeComponent,
     LoginComponent,
     AlertComponent,
     AutofocusDirective
