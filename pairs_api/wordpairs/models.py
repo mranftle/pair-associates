@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 class WordPair(models.Model):
     word1 = models.TextField()
     word2 = models.TextField()
+    active = models.BooleanField(default=True)
+
 
 class UserResponse(models.Model):
     id = models.AutoField(primary_key=True)

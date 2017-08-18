@@ -12,9 +12,12 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
-  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
-  private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
+  // private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
+  // private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
+  // private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
+  private wordPairUrl = 'http://localhost:8000/wordpairs/';
+  private isTestUrl = 'http://localhost:8000/istest/';
+  private userResponseUrl='http://localhost:8000/userresponse/';
   constructor(private http: Http) { }
 
   // get word pairs for study and testing
@@ -46,7 +49,7 @@ export class WordPairService {
     let currentUser = localStorage.getItem('currentUser');
     let headers = new Headers({ 'Authorization': currentUser});
     let options = new RequestOptions({ headers:headers });
-    let url = this.isTestUrl + '/' + user_id + '/set_is_test/';
+    let url = this.isTestUrl + user_id + '/set_is_test/';
     this.http.post(url,body,options) // ...using post request
       .map(res => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => 'Server error') //...errors if
