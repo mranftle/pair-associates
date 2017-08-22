@@ -15,7 +15,7 @@ export class WordPairService {
   private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
   private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
   private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
-  private questionResponseUrl='https://pairassociatesapi.servehttp.com/questionresponse/';
+  private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
   // private wordPairUrl = 'http://localhost:8000/wordpairs/';
   // private isTestUrl = 'http://localhost:8000/istest/';
   // private userResponseUrl='http://localhost:8000/userresponse/';
