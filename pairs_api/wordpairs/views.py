@@ -11,7 +11,7 @@ class WordPairViewSet(viewsets.ModelViewSet):
     API endpoint that allows users to be viewed or edited.
     """
     permission_classes = (permissions.IsAuthenticated,)
-    queryset = WordPair.objects.all()
+    queryset = WordPair.objects.filter(active=True)
     serializer_class = WordPairSerializer
 #
 class UserResponseViewSet(viewsets.ModelViewSet):

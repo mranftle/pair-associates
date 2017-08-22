@@ -9,7 +9,7 @@ class UserResponseSerializer(serializers.HyperlinkedModelSerializer):
 class WordPairSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = WordPair
-        fields = ('word1', 'word2')
+        fields = ('word1', 'word2', 'active')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

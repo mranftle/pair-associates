@@ -1,9 +1,6 @@
 /**
  * Created by matthewRanftle1 on 4/11/17.
  */
-/**
- * Created by matthewRanftle1 on 4/11/17.
- */
 import {Component, Input, Output, EventEmitter} from '@angular/core'
 import {Router} from "@angular/router";
 
@@ -30,7 +27,7 @@ export class InstructionsComponent {
     }
     this.testPhaseChange.emit(this.testPhase);
 
-    // this.router.navigate(['/login']);
+    this.router.navigate(['/goodbye']);
   }
 
   toggleInstructions(): void {

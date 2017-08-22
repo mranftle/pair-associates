@@ -30,7 +30,7 @@
   <!-- testing with feedback part 1  -->
   <div class="inst" *ngIf="testPhase==3">
     <p>
-    You have now finished the study period and will begin the first cycle of memory testing and feedback. Remember, you will be presented with the first word and your task will be to type in the second word.. Please type your response in the textbox and press ‘Return’ to submit. You will have 5 seconds to recall the paired word. After the recall period you will be presented with the correct wordpair. Please use this time to restudy the wordpair. Please click below to continue.
+    You have now finished the study period and will begin the first cycle of memory testing and feedback. Remember, you will be presented with the first word and your task will be to type in the second word. Please type your response in the textbox and press ‘Return’ to submit. You will have 5 seconds to recall the paired word. After the recall period you will be presented with the correct wordpair. Please use this time to restudy the wordpair. Please click below to continue.
     </p>
   </div>
 
@@ -58,13 +58,6 @@
     </p>
   </div>
 
-  <!-- debrief questions -->
-  <div class="inst" *ngIf="testPhase==7">
-    <p>
-    QUESTIONS HERE
-    </p>
-  </div>
-
   <!-- pair associate task complete, debrief instructions -->
   <div class="inst" *ngIf="testPhase==8" >
     <p>
@@ -77,7 +70,7 @@
   </div>
 
   <!-- next instruction button -->
-  <div class="beginTaskButton" *ngIf="testPhase == 1 || testPhase==7">
+  <div class="beginTaskButton" *ngIf="testPhase == 1">
     <button (click)="nextInstruction()">Continue</button>
   </div>
 
@@ -90,6 +83,5 @@
   <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
     <button (click)="logout()">Logout</button>
   </div>
-
 
 </div>

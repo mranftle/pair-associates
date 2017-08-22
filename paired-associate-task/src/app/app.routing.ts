@@ -8,6 +8,7 @@ import {StudyPhaseComponent} from "./components/studyphase.component";
 import {AuthGuard} from "./gaurds/auth.gaurd";
 import {InstructionsComponent} from "./components/instructions.component";
 import {MemoryTaskComponent} from "./components/memorytask.component";
+import {GoodByeComponent} from "./components/goodbye.component";
 
 
 const appRoutes: Routes = [
@@ -16,7 +17,7 @@ const appRoutes: Routes = [
   // { path: 'test-phase', component: TestPhaseNoFeedbackComponent},//, canActivate:[AuthGuard] },
   { path: 'memory-task', component: MemoryTaskComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent},
-
+  { path: 'goodbye', component:GoodByeComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }
 ];

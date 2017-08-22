@@ -16,6 +16,8 @@
     <test-phase-no-feed-back *ngIf="testPhase == 6" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></test-phase-no-feed-back>
   </div>
 
+  <questions *ngIf="testPhase==7" [(testPhase)]="testPhase"></questions>
+
 </div>
 </body>
 </html>
