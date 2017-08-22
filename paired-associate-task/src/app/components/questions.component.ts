@@ -25,9 +25,9 @@ export class QuestionsComponent implements OnInit {
       this.questionNum++;
     }
     else {
-      this.questionNum=1;
-      // this.testPhase++;
-      // this.testPhaseChange.emit(this.testPhase);
+      // this.questionNum=1;
+      this.testPhase++;
+      this.testPhaseChange.emit(this.testPhase);
     }
   }
   ngOnInit() {
