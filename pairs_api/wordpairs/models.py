@@ -21,6 +21,16 @@ class UserResponse(models.Model):
     class Meta:
         ordering = ('created',)
 
+class QuestionResponse(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    question_number = models.IntegerField()
+    response = models.TextField(blank=True, null=True)
+
+    class Meta:
+        ordering = ('created',)
+
 class User(AbstractUser):
     test_phase = models.IntegerField(blank=False, default=0)
 

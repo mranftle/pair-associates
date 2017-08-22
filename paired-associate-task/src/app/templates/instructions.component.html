@@ -17,6 +17,20 @@
     <p>
       Please click below to continue.
     <p>
+    <!-- next instruction button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 1">
+      <button (click)="nextInstruction()">Continue</button>
+    </div>
+
+    <!--begin task button -->
+    <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+      <button (click)="toggleInstructions()">Begin Task</button>
+    </div>
+
+    <!-- logout button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 
   <!-- study phase -->
@@ -24,7 +38,20 @@
     <p>
     You will now begin the study period. Please click below to begin.
     </p>
+    <!-- next instruction button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 1">
+      <button (click)="nextInstruction()">Continue</button>
+    </div>
 
+    <!--begin task button -->
+    <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+      <button (click)="toggleInstructions()">Begin Task</button>
+    </div>
+
+    <!-- logout button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 
   <!-- testing with feedback part 1  -->
@@ -32,6 +59,20 @@
     <p>
     You have now finished the study period and will begin the first cycle of memory testing and feedback. Remember, you will be presented with the first word and your task will be to type in the second word. Please type your response in the textbox and press ‘Return’ to submit. You will have 5 seconds to recall the paired word. After the recall period you will be presented with the correct wordpair. Please use this time to restudy the wordpair. Please click below to continue.
     </p>
+    <!-- next instruction button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 1">
+      <button (click)="nextInstruction()">Continue</button>
+    </div>
+
+    <!--begin task button -->
+    <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+      <button (click)="toggleInstructions()">Begin Task</button>
+    </div>
+
+    <!-- logout button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 
   <!-- testing with feeback part 2 -->
@@ -39,6 +80,20 @@
     <p>
     Thanks, you have now completed the first round of testing. We will now do this testing cycle one more time with the same items. Please be sure to use the feedback if you are unable to recall the paired word.
     </p>
+    <!-- next instruction button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 1">
+      <button (click)="nextInstruction()">Continue</button>
+    </div>
+
+    <!--begin task button -->
+    <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+      <button (click)="toggleInstructions()">Begin Task</button>
+    </div>
+
+    <!-- logout button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 
   <!-- Pre-sleep debriefing -->
@@ -49,6 +104,20 @@
     <p>
     In the morning please log in one more time, soon after you wake up, and complete the study. This should only take 5-10 minutes. Thank you for participating. Have a good night! Please click below to logout
     </p>
+    <!-- next instruction button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 1">
+      <button (click)="nextInstruction()">Continue</button>
+    </div>
+
+    <!--begin task button -->
+    <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+      <button (click)="toggleInstructions()">Begin Task</button>
+    </div>
+
+    <!-- logout button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 
   <!-- testing with no feedback -->
@@ -56,6 +125,20 @@
     <p>
     Good Morning! We will now give you one final test of the word pairs you studied last night. There will be no feedback associated with this test. You will be given 10 seconds to enter a response and press 'Return’. Please try your best
     </p>
+    <!-- next instruction button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 1">
+      <button (click)="nextInstruction()">Continue</button>
+    </div>
+
+    <!--begin task button -->
+    <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+      <button (click)="toggleInstructions()">Begin Task</button>
+    </div>
+
+    <!-- logout button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 
   <!-- pair associate task complete, debrief instructions -->
@@ -67,21 +150,35 @@
     We are interested in the relationship between characteristics of your sleep pattern/quality and memory performance.
     There has been accumulating evidence that deep stages of sleep are related to better memory performance.
     </p>
+    <!-- next instruction button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 1">
+      <button (click)="nextInstruction()">Continue</button>
+    </div>
+
+    <!--begin task button -->
+    <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
+      <button (click)="toggleInstructions()">Begin Task</button>
+    </div>
+
+    <!-- logout button -->
+    <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 
-  <!-- next instruction button -->
-  <div class="beginTaskButton" *ngIf="testPhase == 1">
-    <button (click)="nextInstruction()">Continue</button>
-  </div>
+  <!--&lt;!&ndash; next instruction button &ndash;&gt;-->
+  <!--<div class="beginTaskButton" *ngIf="testPhase == 1">-->
+    <!--<button (click)="nextInstruction()">Continue</button>-->
+  <!--</div>-->
 
-  <!--begin task button -->
-  <div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">
-    <button (click)="toggleInstructions()">Begin Task</button>
-  </div>
+  <!--&lt;!&ndash;begin task button &ndash;&gt;-->
+  <!--<div class="beginTaskButton" *ngIf="((testPhase!=1 && testPhase !=5) && (testPhase !=8 && testPhase !=7))">-->
+    <!--<button (click)="toggleInstructions()">Begin Task</button>-->
+  <!--</div>-->
 
-  <!-- logout button -->
-  <div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">
-    <button (click)="logout()">Logout</button>
-  </div>
+  <!--&lt;!&ndash; logout button &ndash;&gt;-->
+  <!--<div class="beginTaskButton" *ngIf="testPhase == 5 || testPhase==8">-->
+    <!--<button (click)="logout()">Logout</button>-->
+  <!--</div>-->
 
 </div>
