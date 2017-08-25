@@ -1,4 +1,4 @@
-from wordpairs.models import WordPair, UserResponse, QuestionResponse, User
+from wordpairs.models import WordPair, UserResponse, QuestionResponse, Timing, User
 from rest_framework import serializers
 
 class UserResponseSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,3 +20,8 @@ class QuestionResponseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = QuestionResponse
         fields = ('id', 'user_id', 'question_number', 'response')
+
+class TimingSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Timing
+        fields = ('id', 'cue_time', 'study_time', 'test_time_feedback', 'feedback_time', 'test_time_no_feedback')

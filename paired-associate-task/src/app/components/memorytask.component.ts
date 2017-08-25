@@ -30,6 +30,11 @@ export class MemoryTaskComponent implements OnInit {
   loaded: boolean;
   instructions: boolean;
   userId: number;
+  cue_time: number;
+  study_time: number;
+  test_time_feedback: number;
+  feedback_time: number;
+  test_time_no_feedback:number;
   testPhase: number;
 
   constructor(private userService: AuthService,
@@ -43,19 +48,25 @@ export class MemoryTaskComponent implements OnInit {
 
   ngOnInit() {
       this.loaded = true;
-      // this.jwt = this.userService.getJwt();
-      console.log(localStorage.getItem('currentUser'));
       this.wordPairService.getWordPairs().then(
         (wordPairs) => {
           this.wordPairs = wordPairs;
           this.shuffleWordPairs();
           this.wordPairService.getTestOrTrain().then(
             (userInfo) => {
-              console.log(userInfo);
               this.userId = userInfo['id'];
               this.testPhase = userInfo['test_phase'];
               this.instructions = true;
-              this.loaded = true;
+              this.wordPairService.getTiming().then(
+                (timing) => {
+                  this.cue_time = timing[0]['cue_time'];
+                  this.study_time = timing[0]['study_time'];
+                  this.test_time_feedback = timing[0]['test_time_feedback'];
+                  this.feedback_time = timing[0]['feedback_time'];
+                  this.test_time_no_feedback = timing[0]['test_time_no_feedback'];
+                  this.loaded = true;
+                }
+              );
             }
           );
         }

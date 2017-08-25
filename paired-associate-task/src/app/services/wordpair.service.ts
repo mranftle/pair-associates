@@ -12,14 +12,16 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
-  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
-  private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
-  private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
-  // private wordPairUrl = 'http://localhost:8000/wordpairs/';
-  // private isTestUrl = 'http://localhost:8000/istest/';
-  // private userResponseUrl='http://localhost:8000/userresponse/';
-  // private questionResponseUrl='http://localhost:8000/questionresponse/';
+  // private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
+  // private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
+  // private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
+  // private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
+  private wordPairUrl = 'http://localhost:8000/wordpairs/';
+  private isTestUrl = 'http://localhost:8000/istest/';
+  private userResponseUrl='http://localhost:8000/userresponse/';
+  private questionResponseUrl='http://localhost:8000/questionresponse/';
+  private timingUrl = 'http://localhost:8000/timing/';
+
   constructor(private http: Http) { }
 
   // get word pairs for study and testing
@@ -28,6 +30,18 @@ export class WordPairService {
     let headers = new Headers({ 'Authorization': currentUser});
     let options = new RequestOptions({ headers:headers });
     return this.http.get(this.wordPairUrl, options)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  //get timing for study and test phases
+  getTiming() {
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({ 'Authorization': currentUser,
+                                'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers:headers});
+    return this.http.get(this.timingUrl, options)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

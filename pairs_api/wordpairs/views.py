@@ -1,19 +1,16 @@
 import json
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import detail_route
-from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, QuestionResponseSerializer, UserSerializer
-from wordpairs.models import WordPair, UserResponse, QuestionResponse, User
+from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, QuestionResponseSerializer, TimingSerializer, UserSerializer
+from wordpairs.models import WordPair, UserResponse, QuestionResponse, Timing, User
 from rest_framework.response import Response
 
 
 class WordPairViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     permission_classes = (permissions.IsAuthenticated,)
     queryset = WordPair.objects.filter(active=True)
     serializer_class = WordPairSerializer
-#
+
 class UserResponseViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = UserResponse.objects.all()
@@ -47,6 +44,11 @@ class QuestionResponseViewSet(viewsets.ModelViewSet):
             'status': 'Bad Request',
             'message': 'Response could not be created with received data'
         }, status=status.HTTP_400_BAD_REQUEST)
+
+class TimingViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = Timing.objects.filter(id=1)
+    serializer_class = TimingSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
 

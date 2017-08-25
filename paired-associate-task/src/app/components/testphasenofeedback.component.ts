@@ -21,6 +21,8 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
   @Input() wordPairs: WordPair[];
   @Input() testPhase: number;
   @Input() instructions: boolean;
+  @Input() cue_time: number;
+  @Input() test_time_no_feedback: number;
   @Output() testPhaseChange = new EventEmitter<number>();
   @Output() instructionsChange = new EventEmitter<boolean>();
   cue:boolean;
@@ -65,9 +67,9 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
     this.cue = true;
     setTimeout(()=>{
       this.cue = false;
-    }, 500);
+    }, this.cue_time);
     clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
+    this.timer = setTimeout(() => this.submitPair(), this.test_time_no_feedback); // TESTING TIME
     this.responseTime = Date.now();
   }
 
@@ -79,7 +81,7 @@ export class TestPhaseNoFeedbackComponent implements OnInit {
     //cue 500ms
     setTimeout(()=>{
       this.cue = false;
-    }, 500);
-    this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
+    }, this.cue_time);
+    this.timer = setTimeout(() => this.submitPair(), this.test_time_no_feedback); // TESTING TIME
   }
 }

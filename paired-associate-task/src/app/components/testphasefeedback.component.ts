@@ -18,6 +18,9 @@ export class TestPhaseFeedbackComponent implements OnInit {
   @Input() wordPairs: WordPair[];
   @Input() instructions: boolean;
   @Input() testPhase: number;
+  @Input() cue_time: number;
+  @Input() test_time_feedback: number;
+  @Input() feedback_time: number;
   @Output() instructionsChange = new EventEmitter<boolean>();
   @Output() testPhaseChange = new EventEmitter<number>();
   cue:boolean;
@@ -62,16 +65,16 @@ export class TestPhaseFeedbackComponent implements OnInit {
       this.showCorrect = false;
       this.resetTimer();
 
-    }, 1000); // FEEDBACK TIME
+    }, this.feedback_time); // FEEDBACK TIME
   }
 
   resetTimer() : void {
     this.cue = true;
     setTimeout(()=>{
       this.cue = false;
-    }, 500);
+    }, this.cue_time);
     clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
+    this.timer = setTimeout(() => this.submitPair(), this.test_time_feedback); // TESTING TIME
     this.responseTime = Date.now();
   }
 
@@ -80,10 +83,10 @@ export class TestPhaseFeedbackComponent implements OnInit {
     this.i = 0;
     this.responseTime = Date.now();
 
-    //cue 500ms
+    //cue
     setTimeout(()=>{
       this.cue = false;
-    }, 500);
-    this.timer = setTimeout(() => this.submitPair(), 5000); // TESTING TIME
+    }, this.cue_time);
+    this.timer = setTimeout(() => this.submitPair(), this.test_time_feedback); // TESTING TIME
   }
 }

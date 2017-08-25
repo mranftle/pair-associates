@@ -31,6 +31,14 @@ class QuestionResponse(models.Model):
     class Meta:
         ordering = ('created',)
 
+class Timing(models.Model):
+    id = models.AutoField(primary_key=True)
+    cue_time = models.IntegerField()
+    study_time = models.IntegerField()
+    test_time_feedback = models.IntegerField()
+    feedback_time = models.IntegerField()
+    test_time_no_feedback = models.IntegerField()
+
 class User(AbstractUser):
     test_phase = models.IntegerField(blank=False, default=0)
 
