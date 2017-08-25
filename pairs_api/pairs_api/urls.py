@@ -23,6 +23,7 @@ router.register(r'wordpairs', views.WordPairViewSet, 'word-pair')
 router.register(r'istest', views.UserViewSet, 'istest')
 router.register(r'userresponse', views.UserResponseViewSet, 'userresponse')
 router.register(r'questionresponse', views.QuestionResponseViewSet, 'questionresponse')
+router.register(r'timing', views.TimingViewSet, 'timing')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
