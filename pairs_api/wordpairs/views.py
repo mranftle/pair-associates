@@ -1,8 +1,8 @@
 import json
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import detail_route
-from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, UserSerializer
-from wordpairs.models import WordPair, UserResponse, User
+from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, QuestionResponseSerializer, UserSerializer
+from wordpairs.models import WordPair, UserResponse, QuestionResponse, User
 from rest_framework.response import Response
 
 
@@ -24,6 +24,23 @@ class UserResponseViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             UserResponse.objects.create(**serializer.validated_data)
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+
+        return Response({
+            'status': 'Bad Request',
+            'message': 'Response could not be created with received data'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+class QuestionResponseViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = QuestionResponse.objects.all()
+    serializer_class = QuestionResponseSerializer
+
+    def create(self, request, *args, **kwargs):
+        request.data['user_id'] = int(request.user.id)
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            QuestionResponse.objects.create(**serializer.validated_data)
             return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
         return Response({

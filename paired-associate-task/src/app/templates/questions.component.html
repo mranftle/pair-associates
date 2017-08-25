@@ -1,17 +1,25 @@
 <div class="instructions">
-
   <!-- questions brief -->
   <div class="inst" *ngIf="questionNum==1">
     <p>
-      Thank you! You are now down testing. Please answer the following questions.
+      Thank you! You are now down testing. Please click below to answer a few questions regarding your participation in this study.
     </p>
-
+    <!-- next question button -->
+    <div class="beginTaskButton">
+      <button (click)="nextQuestion()">Next</button>
+    </div>
   </div>
   <!--question 1 -->
   <div class="inst" *ngIf="questionNum==2">
     <p>
       question1
     </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+
+    <!-- next question button -->
+    <div class="beginTaskButton">
+      <button (click)="nextQuestion()">Next</button>
+    </div>
   </div>
 
   <!--question 2 -->
@@ -19,6 +27,11 @@
     <p>
       question2
     </p>
+    <textarea autofocus class="span6" rows="3" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="beginTaskButton">
+      <button (click)="nextQuestion()">Next</button>
+    </div>
   </div>
 
   <!--question 3 -->
@@ -26,15 +39,20 @@
     <p>
       question3
     </p>
+    <textarea autofocus class="span6" rows="3" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="beginTaskButton">
+      <button (click)="nextQuestion()">Next</button>
+    </div>
   </div>
 
-  <textarea class="span6" rows="3" placeholder="type response here" required #response></textarea>
+  <!--<textarea class="span6" rows="3" placeholder="type response here" required #response></textarea>-->
 
 
-  <!-- next question button -->
-  <div class="beginTaskButton">
-    <button (click)="nextQuestion()">Next</button>
-  </div>
+  <!--&lt;!&ndash; next question button &ndash;&gt;-->
+  <!--<div class="beginTaskButton">-->
+    <!--<button (click)="nextQuestion()">Next</button>-->
+  <!--</div>-->
 
 </div>
 

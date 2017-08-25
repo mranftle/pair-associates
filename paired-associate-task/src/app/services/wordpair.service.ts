@@ -12,12 +12,14 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  // private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
-  // private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
-  // private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
-  private wordPairUrl = 'http://localhost:8000/wordpairs/';
-  private isTestUrl = 'http://localhost:8000/istest/';
-  private userResponseUrl='http://localhost:8000/userresponse/';
+  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
+  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
+  private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
+  private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
+  // private wordPairUrl = 'http://localhost:8000/wordpairs/';
+  // private isTestUrl = 'http://localhost:8000/istest/';
+  // private userResponseUrl='http://localhost:8000/userresponse/';
+  // private questionResponseUrl='http://localhost:8000/questionresponse/';
   constructor(private http: Http) { }
 
   // get word pairs for study and testing
@@ -63,12 +65,25 @@ export class WordPairService {
     let headers = new Headers({'Authorization': currentUser,
                                'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers:headers });
-
+    console.log(body);
     this.http.post(this.userResponseUrl, body, options) // ...using post request
       .map(res => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => 'Server error') //...errors if
       .subscribe();
   }
+
+  // save debrief question response
+  saveQuestionResponse(userresponse:any) {
+    let body = JSON.stringify(userresponse);
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({'Authorization': currentUser,
+      'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers:headers });
+    this.http.post(this.questionResponseUrl, body, options) // ...using post request
+      .map(res => res.json()) // ...and calling .json() on the response to return data
+      .catch((error:any) => 'Server error') //...errors if
+      .subscribe();  }
+
 
   //more detailed error message to come, move to error file
   private handleError(error: any) {

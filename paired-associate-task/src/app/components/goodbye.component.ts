@@ -7,7 +7,8 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'goodbye',
   templateUrl: '../templates/goodbye.component.html',
-  styleUrls:['../stylesheets/instructions.component.css']
+  styleUrls:['../stylesheets/instructions.component.css',
+             '../stylesheets/memorytask.component.css']
 })
 
 export class GoodByeComponent {
