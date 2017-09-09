@@ -7,20 +7,25 @@
   left: 0;
   width: 70vw;
   height: 60vh;
+  display: table;
+  text-align: center;
 
 }
 
 .inst {
-  height: 100%;
-  width: 100%;
-  text-align: center;
+  height: auto;
+  width: auto;
+  /*text-align: center;*/
   overflow-y: scroll;
   font-family: "Calibri";
   font-size:20px;
-  /*font-size:calc(100% + vw);*/
 }
 .beginTaskButton {
-  width: 50%;
+  width: 30%;
+  margin: auto;
   text-align:center;
+  display: table-cell;
+  vertical-align: bottom;
+
 }
 

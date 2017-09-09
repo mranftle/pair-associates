@@ -25,9 +25,9 @@ export class InstructionsComponent {
     else {
       this.testPhase=1;
     }
-    this.testPhaseChange.emit(this.testPhase);
+    // this.testPhaseChange.emit(this.testPhase);
 
-    this.router.navigate(['/goodbye']);
+    // this.router.navigate(['/goodbye']);
   }
 
   toggleInstructions(): void {
