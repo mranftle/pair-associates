@@ -22,6 +22,7 @@ export class WordPairService {
   private userResponseUrl='http://localhost:8000/userresponse/';
   private questionResponseUrl='http://localhost:8000/questionresponse/';
   private timingUrl = 'http://localhost:8000/timing/';
+  private instructionsUrl = 'http://localhost:8000/instructions/';
 
   constructor(private http: Http) { }
 
@@ -43,6 +44,18 @@ export class WordPairService {
                                 'Content-Type': 'application/json'});
     let options = new RequestOptions({headers:headers});
     return this.http.get(this.timingUrl, options)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  // get experiment instructions
+  getInstructions() {
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({'Authorization': currentUser,
+                                'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers:headers});
+    return this.http.get(this.instructionsUrl, options)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

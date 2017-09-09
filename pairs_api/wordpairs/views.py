@@ -1,8 +1,8 @@
 import json
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import detail_route
-from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, QuestionResponseSerializer, TimingSerializer, UserSerializer
-from wordpairs.models import WordPair, UserResponse, QuestionResponse, Timing, User
+from wordpairs.serializers import WordPairSerializer, UserResponseSerializer, QuestionResponseSerializer, TimingSerializer, InstructionsSerializer, UserSerializer
+from wordpairs.models import WordPair, UserResponse, QuestionResponse, Timing, Instructions, User
 from rest_framework.response import Response
 
 
@@ -49,6 +49,11 @@ class TimingViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Timing.objects.filter(id=1)
     serializer_class = TimingSerializer
+
+class InstructionViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = Instructions.objects.all()
+    serializer_class = InstructionsSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
 

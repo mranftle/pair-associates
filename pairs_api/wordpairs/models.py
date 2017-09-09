@@ -39,6 +39,11 @@ class Timing(models.Model):
     feedback_time = models.IntegerField()
     test_time_no_feedback = models.IntegerField()
 
+class Instructions(models.Model):
+    id = models.AutoField(primary_key=True)
+    instruction_text = models.TextField()
+    instruction_num = models.IntegerField()
+
 class User(AbstractUser):
     test_phase = models.IntegerField(blank=False, default=0)
 

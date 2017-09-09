@@ -8,7 +8,8 @@
   <!--{{jwt}}-->
   <!--{{userId}}-->
   <!--{{testPhase}}-->
-  <instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>
+  {{instruction_list}}
+  <!--<instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>-->
 
   <div *ngIf="!instructions">
     <study-phase *ngIf="testPhase == 2" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" [cue_time]="cue_time" [study_time]="study_time" (testPhaseChange)="updateTestPhase()"></study-phase>

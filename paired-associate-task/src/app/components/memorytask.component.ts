@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from "@angular/core";
 import {WordPair} from "../entities/wordpair";
-import {User} from "../entities/user";
+import {Instruction} from "../entities/instruction";
 import {AlertService} from "../services/alert.service";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
@@ -26,6 +26,7 @@ export class MemoryTaskComponent implements OnInit {
   @ViewChild(TestPhaseNoFeedbackComponent) testPhaseComponent: TestPhaseNoFeedbackComponent;
   @ViewChild(InstructionsComponent) instructionsComponent: InstructionsComponent;
   wordPairs: WordPair[];
+  instruction_list: Instruction[];
   jwt: string;
   loaded: boolean;
   instructions: boolean;
@@ -56,7 +57,6 @@ export class MemoryTaskComponent implements OnInit {
             (userInfo) => {
               this.userId = userInfo['id'];
               this.testPhase = userInfo['test_phase'];
-              this.instructions = true;
               this.wordPairService.getTiming().then(
                 (timing) => {
                   this.cue_time = timing[0]['cue_time'];
@@ -64,7 +64,13 @@ export class MemoryTaskComponent implements OnInit {
                   this.test_time_feedback = timing[0]['test_time_feedback'];
                   this.feedback_time = timing[0]['feedback_time'];
                   this.test_time_no_feedback = timing[0]['test_time_no_feedback'];
-                  this.loaded = true;
+                  this.wordPairService.getInstructions().then(
+                    (instructions) => {
+                      this.instruction_list = instructions;
+                      this.loaded = true;
+                      this.instructions = true;
+                    }
+                  );
                 }
               );
             }
