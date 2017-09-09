@@ -1,19 +1,26 @@
 .instructions {
-  position: absolute; /* or absolute */
-  top: 40%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 70vw;
+  height: 60vh;
 
 }
 
 .inst {
-  /*overflow-y: scroll;*/
-  height:400px;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  overflow-y: scroll;
   font-family: "Calibri";
   font-size:20px;
+  /*font-size:calc(100% + vw);*/
 }
 .beginTaskButton {
+  width: 50%;
   text-align:center;
 }
 
