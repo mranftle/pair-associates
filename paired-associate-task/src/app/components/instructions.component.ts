@@ -3,6 +3,7 @@
  */
 import {Component, Input, Output, EventEmitter} from '@angular/core'
 import {Router} from "@angular/router";
+import {Instruction} from "../entities/instruction"
 
 @Component({
   selector:'instructions',
@@ -13,6 +14,7 @@ import {Router} from "@angular/router";
 export class InstructionsComponent {
   @Input() testPhase: number;
   @Input() instructions: boolean;
+  @Input() instruction_list:Instruction[];
   @Output() instructionsChange = new EventEmitter<boolean>();
   @Output() testPhaseChange = new EventEmitter<number>();
 
@@ -30,6 +32,11 @@ export class InstructionsComponent {
     // this.router.navigate(['/goodbye']);
   }
 
+  getInstruction(){
+    return this.instruction_list
+               .find(x => x.instruction_num === this.testPhase)
+               .instruction_text;
+  }
   toggleInstructions(): void {
     this.instructions = false;
     this.instructionsChange.emit(this.instructions);

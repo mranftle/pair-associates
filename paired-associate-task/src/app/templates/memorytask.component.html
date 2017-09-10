@@ -9,7 +9,7 @@
   <!--{{userId}}-->
   <!--{{testPhase}}-->
   {{instruction_list}}
-  <!--<instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>-->
+  <instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" [instruction_list]="instruction_list" (testPhaseChange)="updateTestPhase()"></instructions>
 
   <div *ngIf="!instructions">
     <study-phase *ngIf="testPhase == 2" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" [cue_time]="cue_time" [study_time]="study_time" (testPhaseChange)="updateTestPhase()"></study-phase>
