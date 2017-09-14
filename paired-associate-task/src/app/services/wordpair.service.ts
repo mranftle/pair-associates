@@ -12,16 +12,16 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  // private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
-  // private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
-  // private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
-  // private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
-  // private timingUrl = 'https://pairsassociatesapi.servehttp.com/timing/';
-  private wordPairUrl = 'http://localhost:8000/wordpairs/';
-  private isTestUrl = 'http://localhost:8000/istest/';
-  private userResponseUrl='http://localhost:8000/userresponse/';
-  private questionResponseUrl='http://localhost:8000/questionresponse/';
-  private timingUrl = 'http://localhost:8000/timing/';
+  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
+  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
+  private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
+  private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
+  private timingUrl = 'https://pairsassociatesapi.servehttp.com/timing/';
+  // private wordPairUrl = 'http://localhost:8000/wordpairs/';
+  // private isTestUrl = 'http://localhost:8000/istest/';
+  // private userResponseUrl='http://localhost:8000/userresponse/';
+  // private questionResponseUrl='http://localhost:8000/questionresponse/';
+  // private timingUrl = 'http://localhost:8000/timing/';
 
   constructor(private http: Http) { }
 
