@@ -1,3 +1,4 @@
+
 .studyword {
   position: fixed; /* or absolute */
   top: 50%;
@@ -5,5 +6,6 @@
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
   font-size: 80px;
+  font-size:calc(100% + 8vw);
 }
 
