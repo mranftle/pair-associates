@@ -6,6 +6,11 @@
   transform: translate(-50%, -50%);
   font-size: 80px;
 }
+pre {
+  border: 0;
+  background-color: transparent;
+}
+
 .submitresponse {
   position: fixed;
   top:70%;
