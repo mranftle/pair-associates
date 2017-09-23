@@ -9,3 +9,4 @@
   font-size:calc(100% + 8vw);
 }
 
+pre {border: 0; background-color: transparent;}

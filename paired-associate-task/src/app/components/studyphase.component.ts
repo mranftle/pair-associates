@@ -40,6 +40,7 @@ export class StudyPhaseComponent {
       else {
 
         //study done route to next component
+        // this.cycleWords();
         this.testPhase++;
         this.instructions = true;
         this.testPhaseChange.emit(this.testPhase);

@@ -1,5 +1,5 @@
 <div class="testword">
-  <span *ngIf="cue==false"> {{showCorrect ?  wordPairs[this.i]?.word1 + '-' + wordPairs[this.i]?.word2 : wordPairs[this.i]?.word1 + '-?????'}}</span>
+  <pre *ngIf="cue==false"> {{showCorrect ?  wordPairs[this.i]?.word1 + '-' + wordPairs[this.i]?.word2 : wordPairs[this.i]?.word1 + '-?????'}}</pre>
   <span *ngIf="cue==true" class="glyphicon glyphicon-plus"></span>
 </div>
 
