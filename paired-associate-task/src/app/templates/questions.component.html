@@ -1,3 +1,4 @@
+{{questionNum}}
 <div class="instructions">
   <!-- questions brief -->
   <div class="inst" *ngIf="questionNum==1">
@@ -15,24 +16,9 @@
   <!--question 1 -->
   <div class="inst" *ngIf="questionNum==2">
     <p>
-      question1
+      What time did you go to bed?
     </p>
     <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
-
-    <!-- next question button -->
-    <div class="boxContainer">
-      <div class="box">
-      <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
-      </div>
-    </div>
-  </div>
-
-  <!--question 2 -->
-  <div class="inst" *ngIf="questionNum==3">
-    <p>
-      question2
-    </p>
-    <textarea autofocus class="span6" rows="3" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
     <!-- next question button -->
     <div class="boxContainer">
       <div class="box">
@@ -41,12 +27,39 @@
     </div>
   </div>
 
-  <!--question 3 -->
+  <!-- question 2 -->
+  <div class="inst" *ngIf="questionNum===3">
+    <p>
+      What time did you try and go to sleep?
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 3 -->
   <div class="inst" *ngIf="questionNum==4">
     <p>
-      question3
+      How long did it take you to fall asleep?
     </p>
-    <textarea autofocus class="span6" rows="3" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+  <!-- question 4 -->
+  <div class="inst" *ngIf="questionNum==5">
+    <p>
+      How many times did you wake up at night? For how long (total)?
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
     <!-- next question button -->
     <div class="boxContainer">
       <div class="box">
@@ -55,13 +68,148 @@
     </div>
   </div>
 
-  <!--<textarea class="span6" rows="3" placeholder="type response here" required #response></textarea>-->
+  <!-- question 5 -->
+  <div class="inst" *ngIf="questionNum==6">
+    <p>
+      What time was your final awakening?
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
 
+  <!-- question 6 -->
+  <div class="inst" *ngIf="questionNum==7">
+    <p>
+    What time did you get out of bed for the day?
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
 
-  <!--&lt;!&ndash; next question button &ndash;&gt;-->
-  <!--<div class="beginTaskButton">-->
-    <!--<button (click)="nextQuestion()">Next</button>-->
-  <!--</div>-->
+  <!-- question 7 -->
+  <div class="inst" *ngIf="questionNum==8">
+    <p>
+      How would you rate the quality of your sleep?
+    </p>
+    <div class="form-check" align="left"#response>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option1">
+        1 Very Poor
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option2">
+        2 Poor
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option3">
+        3 Fair
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option4">
+        4 Good
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option5">
+        5 Very Good
+      </label>
+    </div>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 8 -->
+  <div class="inst" *ngIf="questionNum==9">
+    <p>
+      How many caffeinated beverage did you consume today? What king? How big? At what time?
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 9 -->
+  <div class="inst" *ngIf="questionNum==10">
+    <p>
+      How difficult is it to follow your assigned sleep schedule?
+    </p>
+    <div class="form-check" align="left"#response>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepnessRating" value="option1">
+        1 Very Hard
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepnessRating" value="option2">
+        2 Hard
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepnessRating" value="option3">
+        3 Fair
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option4">
+        4 Easy
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option5">
+        5 Very Easy
+      </label>
+    </div>
+
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 10 -->
+  <div class="inst" *ngIf="questionNum==11">
+    <p>
+      Please leave any addition comments here
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
