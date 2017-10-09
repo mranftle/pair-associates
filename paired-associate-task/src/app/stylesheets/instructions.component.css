@@ -29,3 +29,14 @@
   vertical-align: bottom;
 
 }
+
+.radiocontainer {
+  display: inline-grid;
+  /* tells the auto-placement algorithm to attempt to fill in holes earlier in the grid if smaller items come up later */
+  grid-auto-flow: dense;
+  align-items: center;
+}
+
+.radiocontainer label {
+  grid-column: 2;
+}

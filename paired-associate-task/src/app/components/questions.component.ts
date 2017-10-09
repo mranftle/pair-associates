@@ -14,31 +14,43 @@ import {WordPairService} from "../services/wordpair.service";
 
 export class QuestionsComponent implements OnInit {
   questionNum: number;
-  @ViewChild('response') response:any;
+  sleepRating = 'None';
+  @ViewChild('response') response: any;
   @Input() testPhase: number;
   @Output() testPhaseChange = new EventEmitter<number>();
   @Output() instructionsChange = new EventEmitter<boolean>();
 
-  constructor( private wordPairService: WordPairService) {}
+  constructor(private wordPairService: WordPairService) {
+  }
 
   nextQuestion() {
-    if(this.questionNum==1) {
+    var user_response = {
+      question_number: 0,
+      response: ''
+    }
+
+    if (this.questionNum == 1) {
 
       //next question
       this.questionNum++;
     }
-    else if(this.questionNum > 1 && this.questionNum < 5) {
 
-      //save user response
+    else if (this.questionNum == 2 || this.questionNum == 8 || this.questionNum == 10) {
+      user_response.question_number = 1;
+      user_response.response = this.sleepRating;
+      this.questionNum++;
+      this.wordPairService.saveQuestionResponse(user_response);
+    }
+
+    else {
       var ur = this.response.nativeElement.value || null;
-      var userresponse = {
-        question_number: this.questionNum-1,
-        response: ur
-      };
-      this.wordPairService.saveQuestionResponse(userresponse);
+      user_response.question_number = this.questionNum - 1;
+      user_response.response = ur;
+
+      this.wordPairService.saveQuestionResponse(user_response);
 
       //if last question go to logout, else go to next question
-      if (this.questionNum==4) {
+      if (this.questionNum == 11) {
         // this.questionNum=1;
         this.testPhase++;
         this.testPhaseChange.emit(this.testPhase);
@@ -48,6 +60,7 @@ export class QuestionsComponent implements OnInit {
       }
     }
   }
+
   ngOnInit() {
     this.questionNum =1;
   }
