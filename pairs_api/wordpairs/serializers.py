@@ -14,7 +14,7 @@ class WordPairSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'password', 'username', 'is_test')
+        fields = ('id', 'password', 'username', 'test_phase', 'is_morning')
 
 class QuestionResponseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

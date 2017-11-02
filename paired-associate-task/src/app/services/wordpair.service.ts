@@ -12,16 +12,16 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class WordPairService {
-  private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
-  private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
-  private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
-  private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
-  private timingUrl = 'https://pairsassociatesapi.servehttp.com/timing/';
-  // private wordPairUrl = 'http://localhost:8000/wordpairs/';
-  // private isTestUrl = 'http://localhost:8000/istest/';
-  // private userResponseUrl='http://localhost:8000/userresponse/';
-  // private questionResponseUrl='http://localhost:8000/questionresponse/';
-  // private timingUrl = 'http://localhost:8000/timing/';
+  // private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
+  // private isTestUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
+  // private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
+  // private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
+  // private timingUrl = 'https://pairsassociatesapi.servehttp.com/timing/';
+  private wordPairUrl = 'http://localhost:8000/wordpairs/';
+  private isTestUrl = 'http://localhost:8000/istest/';
+  private userResponseUrl='http://localhost:8000/userresponse/';
+  private questionResponseUrl='http://localhost:8000/questionresponse/';
+  private timingUrl = 'http://localhost:8000/timing/';
 
   constructor(private http: Http) { }
 
@@ -58,6 +58,27 @@ export class WordPairService {
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError)
+  }
+
+  // get the test status of a user (i.e. whether they are a morning or evening user)
+  //if this field hasnt been set, then update the database
+  getIsMorningOrEvening() {
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({ 'Authorization': currentUser,
+      'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers:headers });
+
+    //TODO- SEND REQUEST AND GET USER OBJECT
+    // Check time and if not correct trigger alert, logout
+    // if null, update if time correct
+    //
+
+    // RETURN is_morning or not and return to memory task object. User this to trigger correct
+    // instructions and time intervals
+    // return this.http.get()
+
+    
+
   }
 
   // set whether a user is testing or training

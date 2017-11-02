@@ -41,4 +41,4 @@ class Timing(models.Model):
 
 class User(AbstractUser):
     test_phase = models.IntegerField(blank=False, default=0)
-
+    is_morning = models.NullBooleanField(default=None)

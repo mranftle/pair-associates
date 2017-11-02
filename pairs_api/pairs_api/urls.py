@@ -20,7 +20,7 @@ from wordpairs import views
 
 router = routers.DefaultRouter()
 router.register(r'wordpairs', views.WordPairViewSet, 'word-pair')
-router.register(r'istest', views.UserViewSet, 'istest')
+router.register(r'userinfo', views.UserViewSet, 'userinfo')
 router.register(r'userresponse', views.UserResponseViewSet, 'userresponse')
 router.register(r'questionresponse', views.QuestionResponseViewSet, 'questionresponse')
 router.register(r'timing', views.TimingViewSet, 'timing')

@@ -54,15 +54,34 @@ class UserViewSet(viewsets.ModelViewSet):
 
     # permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UserSerializer
-    def list(self, request):
-        queryset = User.objects.filter(username=request.user)
-        payload = {"id": queryset.values()[0]['id'], "test_phase": queryset.values()[0]['test_phase']}
-        return Response(payload, status=status.HTTP_200_OK)
+    queryset = User.objects.all()
 
     @detail_route(methods=['post'])
-    def set_is_test(self, request, pk=None):
+    def update_user(self, request, pk=None):
+        print request
+        print request.body
         body_unicode = request.body.decode('utf-8')
+        print body_unicode
         body = json.loads(body_unicode)
-        is_test = body['test_phase']
-        User.objects.filter(id=pk).update(test_phase=is_test)
-        return Response(status=status.HTTP_200_OK)
+        if (body['test_phase']):
+            test_phase = body['test_phase']
+            User.objects.filter(id=pk).update(test_phase=test_phase)
+            return Response(status=status.HTTP_200_OK)
+        elif (body['is_morning']):
+            is_morning = body['is_morning']
+            User.objects.filter(id=pk).update(is_morning=is_morning)
+            return Response(status=status.HTTP_200_OK)
+
+    # def list(self, request):
+    #     queryset = User.objects.filter(username=request.user)
+    #     payload = {"id": queryset.values()[0]['id'], "test_phase": queryset.values()[0]['test_phase']}
+    #     return Response(payload, status=status.HTTP_200_OK)
+
+    # @detail_route(methods=['post'])
+    # def set_is_test(self, request, pk=None):
+    #     body_unicode = request.body.decode('utf-8')
+    #     body = json.loads(body_unicode)
+    #     is_test = body['test_phase']
+    #     User.objects.filter(id=pk).update(test_phase=is_test)
+    #     return Response(status=status.HTTP_200_OK)
+

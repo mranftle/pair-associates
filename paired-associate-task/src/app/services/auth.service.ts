@@ -10,8 +10,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-  private userUrl = 'https://pairsassociatesapi.servehttp.com/api-token-auth/';
-  // private userUrl = 'http://localhost:8000/api-token-auth/';
+  // private userUrl = 'https://pairsassociatesapi.servehttp.com/api-token-auth/';
+  private userUrl = 'http://localhost:8000/api-token-auth/';
 
   private postResponse='';
   constructor(private http: Http) { }
@@ -32,6 +32,7 @@ export class AuthService {
         let user = response.json();
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
+          console.log(user);
           localStorage.setItem('currentUser', 'JWT '.concat(user.token));
         }
       });

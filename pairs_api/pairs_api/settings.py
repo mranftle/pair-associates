@@ -29,16 +29,16 @@ ALLOWED_HOSTS = [u'pairsassociatesapi.servehttp.com']
 
 AUTH_USER_MODEL = 'wordpairs.User'
 # Application definition
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#     ),
+# }
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -90,26 +90,26 @@ APPEND_SLASH = False
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pairassociates',
-        'USER': 'pairassociates',
-        'PASSWORD': 'dogchair',
-        'HOST': 'pairassociates.cirnelkq109r.us-west-2.rds.amazonaws.com',
-        'PORT': '3306'
-    }
-}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'pair_associates',
-#         'USER': 'pairs',
+#         'NAME': 'pairassociates',
+#         'USER': 'pairassociates',
 #         'PASSWORD': 'dogchair',
-#         'HOST': '127.0.0.1',
+#         'HOST': 'pairassociates.cirnelkq109r.us-west-2.rds.amazonaws.com',
 #         'PORT': '3306'
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pair_associates',
+        'USER': 'pairs',
+        'PASSWORD': 'dogchair',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
