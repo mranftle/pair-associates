@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit{
               this.testPhase = userInfo['test_phase'];
               this.isMorning = userInfo['is_morning'];
               this.lastLogin = userInfo['last_login'];
-              
+              this.checkCurrentTime();
               console.log(this.userId, this.testPhase, this.isMorning, this.lastLogin)
               this.router.navigate(['/memory-task', {userId: this.userId,
                                                      testPhase: this.testPhase}]);
-              // check is morning and last login time compared to current login time.
+              // // check is morning and last login time compared to current login time.
             }
           );
           // this.router.navigate(['/memory-task']);
@@ -60,5 +60,34 @@ export class LoginComponent implements OnInit{
           this.loading = false;
         }
       );
+  }
+
+  checkCurrentTime() {
+    console.log('checkCurrentTime');
+    let currentTime = new Date();
+    if (currentTime.getHours() > 10 && currentTime.getHours() < 18){
+      return;
+    }
+
+    if (this.isMorning == null) {
+      if (currentTime.getHours() >= 6 && currentTime.getHours() <=10) {
+        this.isMorning = true;
+      }
+      else if ((currentTime.getHours() >=18 && currentTime.getHours() <=24)|| currentTime.getHours() <=2){
+        this.isMorning = false;
+        console.log('hi',this.isMorning);
+      }
+
+    }
+    else {
+      if(this.isMorning == true) {
+
+      }
+      else {
+
+      }
+    }
+    // if (currentTime < );
+
   }
 }

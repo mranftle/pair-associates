@@ -6,8 +6,8 @@
 <div class="fullscreenDiv" *ngIf="loaded == true">
   <!--{{wordPairs}}-->
   <!--{{jwt}}-->
-  {{userId}}
-  {{testPhase}}
+  <!--{{userId}}-->
+  <!--{{testPhase}}-->
   <instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>
 
   <div *ngIf="!instructions">
