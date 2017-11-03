@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 
 class WordPairViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     queryset = WordPair.objects.filter(active=True)
     serializer_class = WordPairSerializer
 
@@ -54,34 +54,37 @@ class UserViewSet(viewsets.ModelViewSet):
 
     # permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+    def list(self, request):
+        print request.user
+        queryset = User.objects.filter(username=request.user)
+        print queryset
+        payload = {"id": queryset.values()[0]['id'],
+                   "test_phase": queryset.values()[0]['test_phase'],
+                   "is_morning": queryset.values()[0]['is_morning'],
+                   "last_login": queryset.values()[0]['last_login']}
+        return Response(payload, status=status.HTTP_200_OK)
 
     @detail_route(methods=['post'])
-    def update_user(self, request, pk=None):
-        print request
-        print request.body
+    def set_test_phase(self, request, pk=None):
         body_unicode = request.body.decode('utf-8')
-        print body_unicode
         body = json.loads(body_unicode)
-        if (body['test_phase']):
-            test_phase = body['test_phase']
-            User.objects.filter(id=pk).update(test_phase=test_phase)
-            return Response(status=status.HTTP_200_OK)
-        elif (body['is_morning']):
-            is_morning = body['is_morning']
-            User.objects.filter(id=pk).update(is_morning=is_morning)
-            return Response(status=status.HTTP_200_OK)
+        is_test = body['test_phase']
+        User.objects.filter(id=pk).update(test_phase=is_test)
+        return Response({
+            'status': 'User updated',
+            'message': 'Test phase set to ' + str(is_test)
+        }, status=status.HTTP_200_OK)
 
-    # def list(self, request):
-    #     queryset = User.objects.filter(username=request.user)
-    #     payload = {"id": queryset.values()[0]['id'], "test_phase": queryset.values()[0]['test_phase']}
-    #     return Response(payload, status=status.HTTP_200_OK)
-
-    # @detail_route(methods=['post'])
-    # def set_is_test(self, request, pk=None):
-    #     body_unicode = request.body.decode('utf-8')
-    #     body = json.loads(body_unicode)
-    #     is_test = body['test_phase']
-    #     User.objects.filter(id=pk).update(test_phase=is_test)
-    #     return Response(status=status.HTTP_200_OK)
-
+    @detail_route(methods=['post'])
+    def set_is_morning(self, request, pk=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        is_morning = body['is_morning']
+        last_login = body['last_login']
+        User.objects.filter(id=pk).update(is_morning=is_morning,
+                                          last_login=last_login)
+        return Response({
+            'status': 'User updated',
+            'message': 'is_morning set to ' + str(is_morning) +
+                        ' last_login set to ' + str(last_login)
+        }, status=status.HTTP_200_OK)

@@ -18,7 +18,7 @@ export class WordPairService {
   // private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
   // private timingUrl = 'https://pairsassociatesapi.servehttp.com/timing/';
   private wordPairUrl = 'http://localhost:8000/wordpairs/';
-  private isTestUrl = 'http://localhost:8000/istest/';
+  private userInfoUrl = 'http://localhost:8000/userinfo/';
   private userResponseUrl='http://localhost:8000/userresponse/';
   private questionResponseUrl='http://localhost:8000/questionresponse/';
   private timingUrl = 'http://localhost:8000/timing/';
@@ -48,38 +48,6 @@ export class WordPairService {
       .catch(this.handleError);
   }
 
-  // return whether a user is testing or training
-  getTestOrTrain() {
-    let currentUser = localStorage.getItem('currentUser');
-    let headers = new Headers({ 'Authorization': currentUser,
-                                'Content-Type': 'application/json'});
-    let options = new RequestOptions({ headers:headers });
-    return this.http.get(this.isTestUrl, options)
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError)
-  }
-
-  // get the test status of a user (i.e. whether they are a morning or evening user)
-  //if this field hasnt been set, then update the database
-  getIsMorningOrEvening() {
-    let currentUser = localStorage.getItem('currentUser');
-    let headers = new Headers({ 'Authorization': currentUser,
-      'Content-Type': 'application/json'});
-    let options = new RequestOptions({ headers:headers });
-
-    //TODO- SEND REQUEST AND GET USER OBJECT
-    // Check time and if not correct trigger alert, logout
-    // if null, update if time correct
-    //
-
-    // RETURN is_morning or not and return to memory task object. User this to trigger correct
-    // instructions and time intervals
-    // return this.http.get()
-
-    
-
-  }
 
   // set whether a user is testing or training
   setTestOrTrain(user_id:number, is_test: number) {
@@ -87,7 +55,7 @@ export class WordPairService {
     let currentUser = localStorage.getItem('currentUser');
     let headers = new Headers({ 'Authorization': currentUser});
     let options = new RequestOptions({ headers:headers });
-    let url = this.isTestUrl + user_id + '/set_is_test/';
+    let url = this.userInfoUrl + user_id + '/set_test_phase/';
     this.http.post(url,body,options) // ...using post request
       .map(res => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => 'Server error') //...errors if

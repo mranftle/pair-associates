@@ -3,7 +3,7 @@ import {WordPair} from "../entities/wordpair";
 import {User} from "../entities/user";
 import {AlertService} from "../services/alert.service";
 import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {WordPairService} from "../services/wordpair.service";
 import {StudyPhaseComponent} from "./studyphase.component";
 import {TestPhaseNoFeedbackComponent} from "./testphasenofeedback.component";
@@ -37,7 +37,9 @@ export class MemoryTaskComponent implements OnInit {
   test_time_no_feedback:number;
   testPhase: number;
 
-  constructor(private userService: AuthService,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private userService: AuthService,
               private wordPairService: WordPairService) {
   }
 
@@ -47,26 +49,23 @@ export class MemoryTaskComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.loaded = true;
+      this.loaded = false;
+      this.userId = this.route.snapshot.params['userId'];
+      this.testPhase = this.route.snapshot.params['testPhase'];
       this.wordPairService.getWordPairs().then(
         (wordPairs) => {
           this.wordPairs = wordPairs;
           this.shuffleWordPairs();
-          this.wordPairService.getTestOrTrain().then(
-            (userInfo) => {
-              this.userId = userInfo['id'];
-              this.testPhase = userInfo['test_phase'];
-              this.instructions = true;
-              this.wordPairService.getTiming().then(
-                (timing) => {
-                  this.cue_time = timing[0]['cue_time'];
-                  this.study_time = timing[0]['study_time'];
-                  this.test_time_feedback = timing[0]['test_time_feedback'];
-                  this.feedback_time = timing[0]['feedback_time'];
-                  this.test_time_no_feedback = timing[0]['test_time_no_feedback'];
-                  this.loaded = true;
-                }
-              );
+          // check is morning and last login time compared to current login time.
+          this.instructions = true;
+          this.wordPairService.getTiming().then(
+            (timing) => {
+                this.cue_time = timing[0]['cue_time'];
+                this.study_time = timing[0]['study_time'];
+                this.test_time_feedback = timing[0]['test_time_feedback'];
+                this.feedback_time = timing[0]['feedback_time'];
+                this.test_time_no_feedback = timing[0]['test_time_no_feedback'];
+                this.loaded = true;
             }
           );
         }

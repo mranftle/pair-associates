@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit{
   @ViewChild('username') username: any;
   @ViewChild('password') password: any;
   private loading: boolean;
+  private userId: number;
+  private testPhase: number;
+  private isMorning: boolean;
+  private lastLogin: Date;
 
   constructor(private router:Router,
               private userService: AuthService,
@@ -34,8 +38,22 @@ export class LoginComponent implements OnInit{
     this.userService.login(this.username.nativeElement.value, this.password.nativeElement.value)
       .subscribe(
         data => {
-          // this.alertService.success('login success')
-          this.router.navigate(['/memory-task']);
+          // get user_id, test_phase, is_morning, last_login_time.
+          // pass to memory task
+          this.userService.getUserInfo().then(
+            (userInfo) => {
+              this.userId = userInfo['id'];
+              this.testPhase = userInfo['test_phase'];
+              this.isMorning = userInfo['is_morning'];
+              this.lastLogin = userInfo['last_login'];
+              
+              console.log(this.userId, this.testPhase, this.isMorning, this.lastLogin)
+              this.router.navigate(['/memory-task', {userId: this.userId,
+                                                     testPhase: this.testPhase}]);
+              // check is morning and last login time compared to current login time.
+            }
+          );
+          // this.router.navigate(['/memory-task']);
         },
         error => {
           this.alertService.error(error)

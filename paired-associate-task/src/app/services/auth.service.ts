@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class AuthService {
   // private userUrl = 'https://pairsassociatesapi.servehttp.com/api-token-auth/';
   private userUrl = 'http://localhost:8000/api-token-auth/';
-
+  private userInfoUrl = 'http://localhost:8000/userinfo/';
   private postResponse='';
   constructor(private http: Http) { }
 
@@ -36,6 +36,36 @@ export class AuthService {
           localStorage.setItem('currentUser', 'JWT '.concat(user.token));
         }
       });
+
+
+
+
+  }
+
+  // return user id, is testing or training, is morning, and last login time
+  getUserInfo() {
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({ 'Authorization': currentUser,
+      'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers:headers });
+    return this.http.get(this.userInfoUrl, options)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError)
+  }
+
+  // set the value of last login and is_morning boolean
+  setIsMorningAndTime(user_id:number, is_morning:boolean, last_login:Date) {
+    let body = JSON.stringify({is_morning:is_morning, last_login:last_login});
+    let currentUser = localStorage.getItem('currentUser');
+    let headers = new Headers({ 'Authorization': currentUser,
+      'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers:headers });
+    let url = this.userInfoUrl + user_id + '/set_is_morning';
+    this.http.post(url,body, options)
+      .map(res => res.json())
+      .catch((error:any) => 'Server error')
+      .subscribe();
   }
 
   logout() {
