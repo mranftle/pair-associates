@@ -13,6 +13,7 @@ import {Router} from "@angular/router";
 export class InstructionsComponent {
   @Input() testPhase: number;
   @Input() instructions: boolean;
+  @Input() isMorning: boolean;
   @Output() instructionsChange = new EventEmitter<boolean>();
   @Output() testPhaseChange = new EventEmitter<number>();
 
@@ -38,5 +39,6 @@ export class InstructionsComponent {
   nextInstruction(): void {
     this.testPhase++;
     this.testPhaseChange.emit(this.testPhase);
+    console.log(typeof(this.isMorning));
   }
 }

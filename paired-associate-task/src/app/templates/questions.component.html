@@ -1,5 +1,5 @@
-<!--{{questionNum}}-->
-<div class="instructions">
+<!--evening user user questions -->
+<div class="instructions" *ngIf="!isMorning">
   <!-- questions brief -->
   <div class="inst" *ngIf="questionNum==1">
     <p>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <!--question 1 -->
+  <!--question 1 evening user-->
   <div class="inst" *ngIf="questionNum==2">
     <p>
       What time did you go to bed?
@@ -213,3 +213,134 @@
 
 </div>
 
+<!--morning user questions-->
+<div class="instructions" *ngIf="isMorning">
+  <!-- questions brief -->
+  <div class="inst" *ngIf="questionNum==1">
+    <p>
+      Thank you! You are now down testing. Please click below to answer a few questions regarding your participation in this study.
+    </p>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 7 -->
+  <div class="inst" *ngIf="questionNum==2">
+    <p>
+      How would you rate your overall attentiveness throughout the day?
+    </p>
+    <div class="form-check" align="left"#response>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option1">
+        1 Very Poor
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option2">
+        2 Poor
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option3">
+        3 Fair
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option4">
+        4 Good
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option5">
+        5 Very Good
+      </label>
+    </div>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 8 -->
+  <div class="inst" *ngIf="questionNum==3">
+    <p>
+      How many caffeinated beverage did you consume today? What king? How big? At what time?
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 9 -->
+  <div class="inst" *ngIf="questionNum==4">
+    <p>
+      On average, how difficult would you say it is to follow your assigned sleep schedule?
+    </p>
+    <div class="form-check" align="left"#response>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepnessRating" value="option1">
+        1 Very Hard
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepnessRating" value="option2">
+        2 Hard
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepnessRating" value="option3">
+        3 Fair
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option4">
+        4 Easy
+      </label>
+    </div>
+    <div class="form-check" align="left">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" [(ngModel)]="sleepRating" value="option5">
+        5 Very Easy
+      </label>
+    </div>
+
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- question 10 -->
+  <div class="inst" *ngIf="questionNum==5">
+    <p>
+      Please leave any addition comments here
+    </p>
+    <textarea autofocus class="span6" rows="10" cols="30" placeholder="type response here" (keyup.enter)="nextQuestion()" required #response></textarea>
+    <!-- next question button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+</div>

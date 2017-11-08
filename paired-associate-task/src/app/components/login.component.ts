@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit{
   @ViewChild('username') username: any;
   @ViewChild('password') password: any;
   private loading: boolean;
+  private isMorning: boolean;
 
   constructor(private router:Router,
               private userService: AuthService,
@@ -40,17 +41,16 @@ export class LoginComponent implements OnInit{
             (userInfo) => {
               let userId = userInfo['id'];
               let testPhase = userInfo['test_phase'];
-              let isMorning = userInfo['is_morning'];
+              this.isMorning = userInfo['is_morning'];
               let lastLogin = userInfo['last_login'];
-              let check_time = this.checkCurrentTime(isMorning, lastLogin)
+              let check_time = this.checkCurrentTime(lastLogin)
               if(check_time.length>0) {
                 this.alertService.error(check_time);
                 return;
               }
-              console.log(userId, testPhase, isMorning, lastLogin)
               this.router.navigate(['/memory-task', {userId: userId,
                                                      testPhase: testPhase,
-                                                     isMorning: isMorning}]);
+                                                     isMorning: this.isMorning}]);
             }
           );
           // this.router.navigate(['/memory-task']);
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit{
       );
   }
 
-  checkCurrentTime(isMorning: boolean, lastLogin: any) {
+  checkCurrentTime(lastLogin: any) {
     console.log('checkCurrentTime');
     let currentTime = new Date();
     let error_message = '';
@@ -73,22 +73,22 @@ export class LoginComponent implements OnInit{
     // }
 
     //first login
-    if (isMorning == null) {
+    if (this.isMorning == null) {
       // set morning
       if (currentTime.getHours() >= 6 && currentTime.getHours() <=10) {
-        isMorning = true;
+        this.isMorning = true;
       }
 
       // set night
       else if ((currentTime.getHours() >=18 && currentTime.getHours() <=24)|| currentTime.getHours() <=2){
-        isMorning = false;
+        this.isMorning = false;
       }
 
     }
     else {
 
       //morning user
-      if(isMorning == true) {
+      if(this.isMorning == true) {
         if ((currentTime.getHours() <6 || currentTime.getHours() > 10) || (currentTime.getHours() - lastLogin.getHours() < 8)) {
           error_message = "You are assigned to complete this task in the morning. Please login when you wake up.";
           return error_message;

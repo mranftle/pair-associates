@@ -17,6 +17,7 @@ export class QuestionsComponent implements OnInit {
   sleepRating = 'None';
   @ViewChild('response') response: any;
   @Input() testPhase: number;
+  @Input() isMorning: boolean;
   @Output() testPhaseChange = new EventEmitter<number>();
   @Output() instructionsChange = new EventEmitter<boolean>();
 
@@ -50,7 +51,7 @@ export class QuestionsComponent implements OnInit {
       this.wordPairService.saveQuestionResponse(user_response);
 
       //if last question go to logout, else go to next question
-      if (this.questionNum == 11) {
+      if (this.questionNum == 11 || (this.questionNum == 5 && this.isMorning)) {
         // this.questionNum=1;
         this.testPhase++;
         this.testPhaseChange.emit(this.testPhase);
@@ -62,6 +63,6 @@ export class QuestionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionNum =1;
+      this.questionNum = 1;
   }
 }

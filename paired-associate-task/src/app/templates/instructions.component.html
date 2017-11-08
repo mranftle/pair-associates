@@ -1,7 +1,7 @@
 <div class="instructions">
 
-  <!-- intro -->
-  <div class="inst"*ngIf="testPhase==1">
+  <!-- intro evening user-->
+  <div class="inst" *ngIf="testPhase==1 && !isMorning">
       You will now begin the memory experiment. We will first present you with pairs of words (e.g. chair-wall) for 4 seconds each. Please study these word pairs, such that you can recall the second word ('wall') when presented the first word ('chair').
       After the study period, you will be given two test cycles with the same list of words. During each test cycle you will be given the first word ('chair' -- ????) and you will be asked to type in the second word ('wall'). You will have about 5 seconds to respond. After this period, you will given the correct answer for 4 seconds for feedback and restudy purposes.
       After you go through the second testing cycle, we want you to relax and go through your normal sleep routine. In the morning after you awake please log in again for the completion of this study.
@@ -11,6 +11,21 @@
     <div class="boxContainer">
       <div class="box">
        <button class="beginTaskButton" (click)="nextInstruction()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- intro morning user -->
+  <div class="inst"*ngIf="testPhase==1 && isMorning">
+    You will now begin the memory experiment. We will first present you with pairs of words (e.g. chair-wall) for 4 seconds each. Please study these word pairs, such that you can recall the second word ('wall') when presented the first word ('chair').
+    After the study period, you will be given two test cycles with the same list of words. During each test cycle you will be given the first word ('chair' -- ????) and you will be asked to type in the second word ('wall'). You will have about 5 seconds to respond. After this period, you will given the correct answer for 4 seconds for feedback and restudy purposes.
+    After you go through the second testing cycle, we want you to go about your normal daily routine. Tonight before you go to bed please log in again for the completion of this study.
+    Thank you again for your participation in this study.
+    Please click below to continue.
+    <!-- next instruction button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="nextInstruction()">Continue</button>
       </div>
     </div>
   </div>
@@ -52,7 +67,7 @@
   </div>
 
   <!-- Pre-sleep debriefing -->
-  <div class="inst" *ngIf="testPhase==5">
+  <div class="inst" *ngIf="testPhase==5 && !isMorning">
     You are now done with the first part of the experiment. Please relax and go through your normal sleep routine.
     In the morning please log in one more time, soon after you wake up, and complete the study. This should only take 5-10 minutes. Thank you for participating. Have a good night! Please click below to logout
 
@@ -64,9 +79,34 @@
     </div>
   </div>
 
-  <!-- testing with no feedback -->
-  <div class="inst" *ngIf="testPhase==6">
+  <!-- Pre-day debriefing -->
+  <div class="inst" *ngIf="testPhase==5 && isMorning">
+    You are now done with the first part of the experiment. Please continue with your normal daily routine.
+    Later this evening, before you go to sleep, please log in one more time and complete the study. This should only take 5-10 minutes. Thank you for participating. Have a good night! Please click below to logout
+
+    <!-- logout button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="logout()">End Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- testing with no feedback night user-->
+  <div class="inst" *ngIf="testPhase==6 && !isMorning">
     Good Morning! We will now give you one final test of the word pairs you studied last night. There will be no feedback associated with this test. You will be given 10 seconds to enter a response and press 'Return’. Please try your best
+
+    <!--begin task button -->
+    <div class="boxContainer">
+      <div class="box">
+        <button class="beginTaskButton" (click)="toggleInstructions()">Begin Testing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- testing with no feedback day user-->
+  <div class="inst" *ngIf="testPhase==6 && isMorning">
+    Good Evening! We will now give you one final test of the word pairs you studied this morning. There will be no feedback associated with this test. You will be given 10 seconds to enter a response and press 'Return’. Please try your best
 
     <!--begin task button -->
     <div class="boxContainer">

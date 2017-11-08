@@ -8,7 +8,9 @@
   <!--{{jwt}}-->
   <!--{{userId}}-->
   <!--{{testPhase}}-->
-  <instructions *ngIf="instructions" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>
+  <!--{{isMorning}}-->
+
+  <instructions *ngIf="instructions" [isMorning]="isMorning" [(testPhase)]="testPhase" [(instructions)]="instructions" (testPhaseChange)="updateTestPhase()"></instructions>
 
   <div *ngIf="!instructions">
     <study-phase *ngIf="testPhase == 2" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" [cue_time]="cue_time" [study_time]="study_time" (testPhaseChange)="updateTestPhase()"></study-phase>
@@ -16,7 +18,7 @@
     <test-phase-no-feed-back *ngIf="testPhase == 6" [wordPairs]="wordPairs" [(testPhase)]="testPhase" [(instructions)]="instructions" [cue_time]="cue_time" [test_time_no_feedback]="test_time_no_feedback" (testPhaseChange)="updateTestPhase()"></test-phase-no-feed-back>
   </div>
 
-  <questions *ngIf="testPhase==7" [(testPhase)]="testPhase"></questions>
+  <questions *ngIf="testPhase==7" [isMorning]="isMorning" [(testPhase)]="testPhase"></questions>
 
 </div>
 </body>
