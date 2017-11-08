@@ -90,26 +90,26 @@ APPEND_SLASH = False
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'pairassociates',
-#         'USER': 'pairassociates',
-#         'PASSWORD': 'dogchair',
-#         'HOST': 'pairassociates.cirnelkq109r.us-west-2.rds.amazonaws.com',
-#         'PORT': '3306'
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pair_associates',
-        'USER': 'pairs',
+        'NAME': 'pairassociates',
+        'USER': 'pairassociates',
         'PASSWORD': 'dogchair',
-        'HOST': '127.0.0.1',
+        'HOST': 'pairassociates.cirnelkq109r.us-west-2.rds.amazonaws.com',
         'PORT': '3306'
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'pair_associates',
+#         'USER': 'pairs',
+#         'PASSWORD': 'dogchair',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
