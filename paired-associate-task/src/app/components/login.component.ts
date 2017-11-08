@@ -18,10 +18,6 @@ export class LoginComponent implements OnInit{
   @ViewChild('username') username: any;
   @ViewChild('password') password: any;
   private loading: boolean;
-  private userId: number;
-  private testPhase: number;
-  private isMorning: boolean;
-  private lastLogin: Date;
 
   constructor(private router:Router,
               private userService: AuthService,
@@ -42,15 +38,19 @@ export class LoginComponent implements OnInit{
           // pass to memory task
           this.userService.getUserInfo().then(
             (userInfo) => {
-              this.userId = userInfo['id'];
-              this.testPhase = userInfo['test_phase'];
-              this.isMorning = userInfo['is_morning'];
-              this.lastLogin = userInfo['last_login'];
-              this.checkCurrentTime();
-              console.log(this.userId, this.testPhase, this.isMorning, this.lastLogin)
-              this.router.navigate(['/memory-task', {userId: this.userId,
-                                                     testPhase: this.testPhase}]);
-              // // check is morning and last login time compared to current login time.
+              let userId = userInfo['id'];
+              let testPhase = userInfo['test_phase'];
+              let isMorning = userInfo['is_morning'];
+              let lastLogin = userInfo['last_login'];
+              let check_time = this.checkCurrentTime(isMorning, lastLogin)
+              if(check_time.length>0) {
+                this.alertService.error(check_time);
+                return;
+              }
+              console.log(userId, testPhase, isMorning, lastLogin)
+              this.router.navigate(['/memory-task', {userId: userId,
+                                                     testPhase: testPhase,
+                                                     isMorning: isMorning}]);
             }
           );
           // this.router.navigate(['/memory-task']);
@@ -62,32 +62,51 @@ export class LoginComponent implements OnInit{
       );
   }
 
-  checkCurrentTime() {
+  checkCurrentTime(isMorning: boolean, lastLogin: any) {
     console.log('checkCurrentTime');
     let currentTime = new Date();
-    if (currentTime.getHours() > 10 && currentTime.getHours() < 18){
-      return;
-    }
+    let error_message = '';
 
-    if (this.isMorning == null) {
+    //incorrect login time, deny access
+    // if (currentTime.getHours() > 10 && currentTime.getHours() < 18){
+    //   return false;
+    // }
+
+    //first login
+    if (isMorning == null) {
+      // set morning
       if (currentTime.getHours() >= 6 && currentTime.getHours() <=10) {
-        this.isMorning = true;
+        isMorning = true;
       }
+
+      // set night
       else if ((currentTime.getHours() >=18 && currentTime.getHours() <=24)|| currentTime.getHours() <=2){
-        this.isMorning = false;
-        console.log('hi',this.isMorning);
+        isMorning = false;
       }
 
     }
     else {
-      if(this.isMorning == true) {
+
+      //morning user
+      if(isMorning == true) {
+        if ((currentTime.getHours() <6 || currentTime.getHours() > 10) || (currentTime.getHours() - lastLogin.getHours() < 8)) {
+          error_message = "You are assigned to complete this task in the morning. Please login when you wake up.";
+          return error_message;
+        }
 
       }
+      // evening user
       else {
+        if ((currentTime.getHours() < 18 && (currentTime.getHours() != 2 || currentTime.getHours() != 1)) || (currentTime.getHours() - lastLogin.getHours() < 8)) {
+          error_message = "You are assigned to complete this task in the evening. Please login before you go to bed.";
+
+          return error_message;
+        }
 
       }
     }
-    // if (currentTime < );
+
+    return error_message;
 
   }
 }

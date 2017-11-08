@@ -36,6 +36,7 @@ export class MemoryTaskComponent implements OnInit {
   feedback_time: number;
   test_time_no_feedback:number;
   testPhase: number;
+  isMorning: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -52,6 +53,7 @@ export class MemoryTaskComponent implements OnInit {
       this.loaded = false;
       this.userId = this.route.snapshot.params['userId'];
       this.testPhase = this.route.snapshot.params['testPhase'];
+      this.isMorning = this.route.snapshot.params['isMorning'];
       this.wordPairService.getWordPairs().then(
         (wordPairs) => {
           this.wordPairs = wordPairs;
