@@ -13,7 +13,7 @@ import {Observable} from "rxjs";
 @Injectable()
 export class WordPairService {
   private wordPairUrl = 'https://pairsassociatesapi.servehttp.com/wordpairs/';
-  private userInfoUrl = 'https://pairsassociatesapi.servehttp.com/istest/';
+  private userInfoUrl = 'https://pairsassociatesapi.servehttp.com/userinfo/';
   private userResponseUrl='https://pairsassociatesapi.servehttp.com/userresponse/';
   private questionResponseUrl='https://pairsassociatesapi.servehttp.com/questionresponse/';
   private timingUrl = 'https://pairsassociatesapi.servehttp.com/timing/';
